@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var manager = PokemonManager()
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -20,8 +21,15 @@ struct ContentView: View {
                 .font(.title2)
                 
             }
+            .onAppear{
+                Task{
+                    print(try await manager.getEggGroups())
+                }
+                
+            }
             .padding()
         }
+        
     }
 }
 

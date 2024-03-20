@@ -18,7 +18,7 @@
 		D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */; };
 		D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */; };
 		D6D063BC2BAB38FC00ADBEB4 /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063BB2BAB38FC00ADBEB4 /* PokemonAPI */; };
-		D6D063BF2BAB3A1400ADBEB4 /* PokemonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063BE2BAB3A1400ADBEB4 /* PokemonClass.swift */; };
+		D6D063BF2BAB3A1400ADBEB4 /* PokemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063BE2BAB3A1400ADBEB4 /* PokemonManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		D6D063A42BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperUITests.swift; sourceTree = "<group>"; };
 		D6D063A62BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D6D063B32BAB363800ADBEB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D6D063BE2BAB3A1400ADBEB4 /* PokemonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonClass.swift; sourceTree = "<group>"; };
+		D6D063BE2BAB3A1400ADBEB4 /* PokemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 		D6D063BD2BAB39F900ADBEB4 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
-				D6D063BE2BAB3A1400ADBEB4 /* PokemonClass.swift */,
+				D6D063BE2BAB3A1400ADBEB4 /* PokemonManager.swift */,
 			);
 			path = Pokemon;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D063BF2BAB3A1400ADBEB4 /* PokemonClass.swift in Sources */,
+				D6D063BF2BAB3A1400ADBEB4 /* PokemonManager.swift in Sources */,
 				D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */,
 				D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */,
 			);
