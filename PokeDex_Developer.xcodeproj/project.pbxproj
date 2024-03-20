@@ -14,6 +14,9 @@
 		D6D0639B2BAB2FDB00ADBEB4 /* PokeDex_DeveloperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0639A2BAB2FDB00ADBEB4 /* PokeDex_DeveloperTests.swift */; };
 		D6D063A52BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063A42BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.swift */; };
 		D6D063A72BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063A62BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITestsLaunchTests.swift */; };
+		D6D063B42BAB363800ADBEB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D063B32BAB363800ADBEB4 /* GoogleService-Info.plist */; };
+		D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */; };
+		D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,7 @@
 		D6D063A02BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokeDex_DeveloperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D063A42BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperUITests.swift; sourceTree = "<group>"; };
 		D6D063A62BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D6D063B32BAB363800ADBEB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */,
+				D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +100,7 @@
 		D6D063882BAB2FD900ADBEB4 /* PokeDex_Developer */ = {
 			isa = PBXGroup;
 			children = (
+				D6D063B32BAB363800ADBEB4 /* GoogleService-Info.plist */,
 				D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */,
 				D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */,
 				D6D0638D2BAB2FDB00ADBEB4 /* Assets.xcassets */,
@@ -143,6 +150,10 @@
 			dependencies = (
 			);
 			name = PokeDex_Developer;
+			packageProductDependencies = (
+				D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */,
+				D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */,
+			);
 			productName = PokeDex_Developer;
 			productReference = D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +226,9 @@
 				Base,
 			);
 			mainGroup = D6D0637D2BAB2FD900ADBEB4;
+			packageReferences = (
+				D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D6D063872BAB2FD900ADBEB4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,6 +247,7 @@
 			files = (
 				D6D063912BAB2FDB00ADBEB4 /* Preview Assets.xcassets in Resources */,
 				D6D0638E2BAB2FDB00ADBEB4 /* Assets.xcassets in Resources */,
+				D6D063B42BAB363800ADBEB4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +605,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D6D0637E2BAB2FD900ADBEB4 /* Project object */;
 }
