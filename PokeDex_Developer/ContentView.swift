@@ -9,13 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ScrollView{
+            VStack(alignment: .leading){
+                HStack{
+                    Image(systemName: "hare.fill")
+                    Text("포켓몬정보")
+                        .bold()
+                }
+                .foregroundStyle(.primary)
+                .font(.title2)
+                
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
