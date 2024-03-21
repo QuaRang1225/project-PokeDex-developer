@@ -74,6 +74,10 @@ class PokemonManager:ObservableObject{
         guard let names = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).names else { return ""}
         return names.first(where: {$0.language?.name == "ko"})?.name ?? ""
     }
-    
+    func getPokdexNumbers(num:Int) async throws -> ([String],[Int]){
+        guard let pokedexNumbers = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).pokedexNumbers else {return([],[])}
+        let koreanArea = pokedexNumbers.compactMap{AreaFilter(rawValue: $0.pokedex?.name ?? "")?.name}
+        return (koreanArea,pokedexNumbers.compactMap{$0.entryNumber})
+    }
     
 }

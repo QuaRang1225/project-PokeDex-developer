@@ -30,6 +30,7 @@ struct ContentView: View {
                     print(try await manager.getTextEntried(num: 1))
                     print(try await manager.getHatchCounter(num: 1))
                     print(try await manager.getName(num: 1))
+                    print(try await manager.getPokdexNumbers(num: 1))
                 }
                 
             }

@@ -105,8 +105,7 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/QuaRang1225/PokemonAPI.git",
       "state" : {
-        "branch" : "error",
-        "revision" : "97075bcf1a4fcf2ae21dda62a0a26236e20182dc"
+        "revision" : "fe365b18ef6b87c90dd6c4e0e3d9da5be645f4ba"
       }
     },
     {

@@ -18,8 +18,9 @@
 		D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */; };
 		D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */; };
 		D6D063BF2BAB3A1400ADBEB4 /* PokemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063BE2BAB3A1400ADBEB4 /* PokemonManager.swift */; };
-		D6F54E5C2BABF21800145AFF /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6F54E5B2BABF21800145AFF /* PokemonAPI */; };
 		D6F54E5F2BABFB0800145AFF /* VersionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E5E2BABFB0800145AFF /* VersionFilter.swift */; };
+		D6F54E612BAC142D00145AFF /* AreaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E602BAC142D00145AFF /* AreaFilter.swift */; };
+		D6F54E6A2BAC3D4F00145AFF /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6F54E692BAC3D4F00145AFF /* PokemonAPI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D6D063B32BAB363800ADBEB4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D6D063BE2BAB3A1400ADBEB4 /* PokemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonManager.swift; sourceTree = "<group>"; };
 		D6F54E5E2BABFB0800145AFF /* VersionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionFilter.swift; sourceTree = "<group>"; };
+		D6F54E602BAC142D00145AFF /* AreaFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6F54E5C2BABF21800145AFF /* PokemonAPI in Frameworks */,
+				D6F54E6A2BAC3D4F00145AFF /* PokemonAPI in Frameworks */,
 				D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */,
 				D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				D6F54E5E2BABFB0800145AFF /* VersionFilter.swift */,
+				D6F54E602BAC142D00145AFF /* AreaFilter.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -177,7 +180,7 @@
 			packageProductDependencies = (
 				D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */,
 				D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */,
-				D6F54E5B2BABF21800145AFF /* PokemonAPI */,
+				D6F54E692BAC3D4F00145AFF /* PokemonAPI */,
 			);
 			productName = PokeDex_Developer;
 			productReference = D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */;
@@ -253,7 +256,7 @@
 			mainGroup = D6D0637D2BAB2FD900ADBEB4;
 			packageReferences = (
 				D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D6F54E5A2BABF21800145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */,
+				D6F54E682BAC3D4F00145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */,
 			);
 			productRefGroup = D6D063872BAB2FD900ADBEB4 /* Products */;
 			projectDirPath = "";
@@ -299,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6D063BF2BAB3A1400ADBEB4 /* PokemonManager.swift in Sources */,
+				D6F54E612BAC142D00145AFF /* AreaFilter.swift in Sources */,
 				D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */,
 				D6F54E5F2BABFB0800145AFF /* VersionFilter.swift in Sources */,
 				D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */,
@@ -643,12 +647,12 @@
 				minimumVersion = 10.23.0;
 			};
 		};
-		D6F54E5A2BABF21800145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */ = {
+		D6F54E682BAC3D4F00145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/QuaRang1225/PokemonAPI.git";
 			requirement = {
-				branch = error;
-				kind = branch;
+				kind = revision;
+				revision = fe365b18ef6b87c90dd6c4e0e3d9da5be645f4ba;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -664,9 +668,9 @@
 			package = D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
 		};
-		D6F54E5B2BABF21800145AFF /* PokemonAPI */ = {
+		D6F54E692BAC3D4F00145AFF /* PokemonAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D6F54E5A2BABF21800145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */;
+			package = D6F54E682BAC3D4F00145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */;
 			productName = PokemonAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
