@@ -10,7 +10,8 @@ import PokemonAPI
 
 protocol Pokemon{
     func getAbilites(name:String) async throws -> ([String],[String],[Bool])            //특성/특성설명/숨은 특성인지
-    func getKoreanAbilites(ability:String)async throws -> (String,String)              //한글 특성/한글 특성설명
+    func getKoreanAbilites(ability:String)async throws -> (String,String)               //한글 특성/한글 특성설명
+    func getHeight(name:String) async throws -> Double                                  //키
 }
 
 class PokemonManager:ObservableObject,Pokemon{
@@ -40,5 +41,10 @@ class PokemonManager:ObservableObject,Pokemon{
         let koreanText = pokemonKoreanAbilites.flavorTextEntries?.first(where: {$0.language?.name == "ko"})?.flavorText ?? ""
         
         return (koreanName,koreanText)
+    }
+    
+    func getHeight(name:String) async throws -> Double{
+        guard let height = try await PokemonAPI().pokemonService.fetchPokemon(name).height else { return 0 }
+        return Double(height / 10)
     }
 }
