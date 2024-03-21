@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var manager = PokemonSpeciesManager()
+    @StateObject var speceisManager = PokemonSpeciesManager()
+    @StateObject var manager = PokemonManager()
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -23,15 +24,18 @@ struct ContentView: View {
             }
             .onAppear{
                 Task{
-                    print(Double(100 * (try await manager.getGenderRate(num: 1))/8))
-                    print(try await manager.getEggGroups(num: 1))
-                    print(try await manager.getGenra(num: 1))
-                    print(try await manager.getFormsSwitchable(num: 1))
-                    print(try await manager.getTextEntried(num: 1))
-                    print(try await manager.getHatchCounter(num: 1))
-                    print(try await manager.getName(num: 1))
-                    print(try await manager.getPokdexNumbers(num: 1))
-                    print(try await manager.getVarieties(num: 1))
+//                    print(Double(100 * (try await speceisManager.getGenderRate(num: 1))/8))
+//                    print(try await speceisManager.getEggGroups(num: 1))
+//                    print(try await speceisManager.getGenra(num: 1))
+//                    print(try await speceisManager.getFormsSwitchable(num: 1))
+//                    print(try await speceisManager.getTextEntried(num: 1))
+//                    print(try await speceisManager.getHatchCounter(num: 1))
+//                    print(try await speceisManager.getName(num: 1))
+//                    print(try await speceisManager.getPokdexNumbers(num: 1))
+//                    print(try await speceisManager.getVarieties(num: 1))
+                    
+                    
+                    print(try await manager.getAbilites(name: "raticate-alola"))
                 }
             }
             .padding()

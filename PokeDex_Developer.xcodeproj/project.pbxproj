@@ -22,6 +22,7 @@
 		D6F54E612BAC142D00145AFF /* AreaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E602BAC142D00145AFF /* AreaFilter.swift */; };
 		D6F54E6A2BAC3D4F00145AFF /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6F54E692BAC3D4F00145AFF /* PokemonAPI */; };
 		D6F54E6D2BAC419300145AFF /* PokemonSpecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E6C2BAC419300145AFF /* PokemonSpecies.swift */; };
+		D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		D6F54E5E2BABFB0800145AFF /* VersionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionFilter.swift; sourceTree = "<group>"; };
 		D6F54E602BAC142D00145AFF /* AreaFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaFilter.swift; sourceTree = "<group>"; };
 		D6F54E6C2BAC419300145AFF /* PokemonSpecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecies.swift; sourceTree = "<group>"; };
+		D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				D6D063BE2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift */,
+				D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */,
 			);
 			path = Pokemon;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F54E6D2BAC419300145AFF /* PokemonSpecies.swift in Sources */,
+				D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */,
 				D6D063BF2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift in Sources */,
 				D6F54E612BAC142D00145AFF /* AreaFilter.swift in Sources */,
 				D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */,
