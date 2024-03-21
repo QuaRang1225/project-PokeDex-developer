@@ -19,15 +19,13 @@ import PokemonAPI
 class PokemonManager:ObservableObject{
     
     
-//    func getPokemonSpecies() async throws{
-//        var pokemonSpecies = PokemonSpecies()
-//        
-//    }
-    
-    func getEggGroups() async throws -> [String]{
+
+    //알그룹
+    func getEggGroups(num:Int) async throws -> [String]{
+
         var eggGroupsEnglishNames:[String] = []
         var eggGroupsKoreanNames = [String]()
-        if let eggGroups = try await PokemonAPI().pokemonService.fetchPokemonSpecies(1).eggGroups{
+        if let eggGroups = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).eggGroups{
             eggGroupsEnglishNames = eggGroups.compactMap{$0.name}
         }
         for name in eggGroupsEnglishNames{
@@ -36,5 +34,17 @@ class PokemonManager:ObservableObject{
             }
         }
         return eggGroupsKoreanNames
+    }
+    
+    //도감 설명
+    func getTextEntried(num:Int) async throws -> ([String],[String]){
+        if let textEntries = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).flavorTextEntries{
+            //한글로 되어있는 도감설명만 필터링
+            let koreanFlavorTextEntries = textEntries.filter{$0.language?.name == "ko"}
+            
+            let koreanTextEntriesList = (koreanFlavorTextEntries.compactMap{$0.flavorText},koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name})
+            return koreanTextEntriesList
+        }
+        return ([],[])
     }
 }

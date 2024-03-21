@@ -23,7 +23,7 @@ struct ContentView: View {
             }
             .onAppear{
                 Task{
-                    print(try await manager.getEggGroups())
+                    print(try await manager.getTextEntried(num: 1))
                 }
                 
             }
