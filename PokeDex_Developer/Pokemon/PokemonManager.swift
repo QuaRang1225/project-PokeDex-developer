@@ -47,4 +47,16 @@ class PokemonManager:ObservableObject{
         }
         return ([],[])
     }
+    
+    //폼체인지 유무
+    func getFormsSwitchable(num:Int) async throws -> Bool{
+        return try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).formsSwitchable ?? false
+    }
+    
+    //성비
+    func getGenderRate(num:Int) async throws -> Int{
+        return try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).genderRate ?? 0
+    }
+    
+   
 }
