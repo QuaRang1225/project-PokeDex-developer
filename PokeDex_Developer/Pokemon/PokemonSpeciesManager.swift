@@ -11,7 +11,7 @@ import PokemonAPI
 
 
 
-class PokemonManager:ObservableObject,PokemonSpecies{
+class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
     
     
     

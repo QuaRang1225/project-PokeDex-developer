@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var manager = PokemonManager()
+    @StateObject var manager = PokemonSpeciesManager()
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
