@@ -63,5 +63,17 @@ class PokemonManager:ObservableObject{
         return genra.first(where: {$0.language?.name == "ko"})?.genus ?? ""
     }
     
+    //부화 카운트
+    func getHatchCounter(num:Int) async throws -> Int{
+        guard let hatchCounter = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).hatchCounter else { return 0}
+        return hatchCounter
+    }
+    
+    //이름
+    func getName(num:Int) async throws -> String{
+        guard let names = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).names else { return ""}
+        return names.first(where: {$0.language?.name == "ko"})?.name ?? ""
+    }
+    
     
 }

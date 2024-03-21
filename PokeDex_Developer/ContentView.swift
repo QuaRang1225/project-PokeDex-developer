@@ -23,10 +23,13 @@ struct ContentView: View {
             }
             .onAppear{
                 Task{
+                    print(Double(100 * (try await manager.getGenderRate(num: 1))/8))
                     print(try await manager.getEggGroups(num: 1))
                     print(try await manager.getGenra(num: 1))
                     print(try await manager.getFormsSwitchable(num: 1))
                     print(try await manager.getTextEntried(num: 1))
+                    print(try await manager.getHatchCounter(num: 1))
+                    print(try await manager.getName(num: 1))
                 }
                 
             }
