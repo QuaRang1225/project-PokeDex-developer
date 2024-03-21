@@ -10,7 +10,7 @@ import PokemonAPI
 
 //struct PokemonSpecies{
 //    var eggGroups:[String]
-//    
+//
 //    init(){
 //        self.eggGroups = []
 //    }
@@ -19,10 +19,10 @@ import PokemonAPI
 class PokemonManager:ObservableObject{
     
     
-
+    
     //알그룹
     func getEggGroups(num:Int) async throws -> [String]{
-
+        
         var eggGroupsEnglishNames:[String] = []
         var eggGroupsKoreanNames = [String]()
         if let eggGroups = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).eggGroups{
@@ -38,14 +38,13 @@ class PokemonManager:ObservableObject{
     
     //도감 설명
     func getTextEntried(num:Int) async throws -> ([String],[String]){
-        if let textEntries = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).flavorTextEntries{
-            //한글로 되어있는 도감설명만 필터링
-            let koreanFlavorTextEntries = textEntries.filter{$0.language?.name == "ko"}
-            
-            let koreanTextEntriesList = (koreanFlavorTextEntries.compactMap{$0.flavorText},koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name})
-            return koreanTextEntriesList
-        }
-        return ([],[])
+        guard let textEntries = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).flavorTextEntries else { return ([],[]) }
+        //한글로 되어있는 도감설명만 필터링
+        let koreanFlavorTextEntries = textEntries.filter{$0.language?.name == "ko"}
+        
+        let koreanTextEntriesList = (koreanFlavorTextEntries.compactMap{$0.flavorText},koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name})
+        return koreanTextEntriesList
+        
     }
     
     //폼체인지 유무
@@ -58,5 +57,11 @@ class PokemonManager:ObservableObject{
         return try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).genderRate ?? 0
     }
     
-   
+    //분류
+    func getGenra(num:Int) async throws -> String{
+        guard let genra = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).genera else { return ""}
+        return genra.first(where: {$0.language?.name == "ko"})?.genus ?? ""
+    }
+    
+    
 }

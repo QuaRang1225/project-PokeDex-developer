@@ -23,6 +23,9 @@ struct ContentView: View {
             }
             .onAppear{
                 Task{
+                    print(try await manager.getEggGroups(num: 1))
+                    print(try await manager.getGenra(num: 1))
+                    print(try await manager.getFormsSwitchable(num: 1))
                     print(try await manager.getTextEntried(num: 1))
                 }
                 
