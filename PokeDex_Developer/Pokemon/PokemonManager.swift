@@ -77,7 +77,7 @@ class PokemonManager:ObservableObject,PokemonSpecies{
     
     func getVarieties(num:Int) async throws -> [String]{
         guard let pokedexVarieties = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).varieties else {return([])}
-        let varieties = pokedexVarieties.filter{!($0.isDefault ?? true)}.compactMap{$0.pokemon?.name}
+        let varieties = pokedexVarieties.compactMap{$0.pokemon?.name}
         return varieties
         
     }
