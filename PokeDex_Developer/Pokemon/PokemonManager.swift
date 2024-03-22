@@ -13,6 +13,7 @@ protocol Pokemon{
     func getKoreanAbilites(ability:String)async throws -> (String,String)               //한글 특성/한글 특성설명
     func getForms(name:String) async throws -> ([String],[String])                      //폼 이름,폼 이미지
     func getHeight(name:String) async throws -> Double                                  //키
+    func getStats(name:String) async throws -> ([String],[Int])                         //스탯
 }
 
 class PokemonManager:ObservableObject,Pokemon{
@@ -65,8 +66,6 @@ class PokemonManager:ObservableObject,Pokemon{
             }else{
                 formInfo.0.append("")           //폼이름 자체가 존재하지 않는경우
             }
-            
-            
             if isDefault{
                 if let name = pokemonForm.formName{
                     if name.isEmpty{
@@ -85,6 +84,9 @@ class PokemonManager:ObservableObject,Pokemon{
         guard let height = try await PokemonAPI().pokemonService.fetchPokemon(name).height else { return 0 }
         return Double(height) / 10
     }
-    
+    func getStats(name:String) async throws -> ([String],[Int]){
+        guard let stats = try await PokemonAPI().pokemonService.fetchPokemon(name).stats else {return ([],[])}
+        return (stats.compactMap{StatFilter(rawValue: $0.stat?.name ?? "")?.name},stats.compactMap{$0.baseStat})
+    }
     
 }

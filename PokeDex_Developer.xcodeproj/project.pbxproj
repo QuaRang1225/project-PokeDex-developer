@@ -24,6 +24,7 @@
 		D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */; };
 		D6F54E722BAC668700145AFF /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6F54E712BAC668700145AFF /* PokemonAPI */; };
 		D6F54E742BADAD5800145AFF /* FormsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E732BADAD5800145AFF /* FormsFilter.swift */; };
+		D6F54E762BADB8AB00145AFF /* StatFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E752BADB8AB00145AFF /* StatFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		D6F54E6C2BAC419300145AFF /* PokemonSpecies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSpecies.swift; sourceTree = "<group>"; };
 		D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonManager.swift; sourceTree = "<group>"; };
 		D6F54E732BADAD5800145AFF /* FormsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsFilter.swift; sourceTree = "<group>"; };
+		D6F54E752BADB8AB00145AFF /* StatFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				D6F54E5E2BABFB0800145AFF /* VersionFilter.swift */,
 				D6F54E602BAC142D00145AFF /* AreaFilter.swift */,
 				D6F54E732BADAD5800145AFF /* FormsFilter.swift */,
+				D6F54E752BADB8AB00145AFF /* StatFilter.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6F54E6D2BAC419300145AFF /* PokemonSpecies.swift in Sources */,
+				D6F54E762BADB8AB00145AFF /* StatFilter.swift in Sources */,
 				D6F54E742BADAD5800145AFF /* FormsFilter.swift in Sources */,
 				D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */,
 				D6D063BF2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift in Sources */,

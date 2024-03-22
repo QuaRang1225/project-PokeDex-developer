@@ -41,6 +41,7 @@ struct ContentView: View {
                         print(try await manager.getForms(name: vari))
                     }
                     print(try await manager.getHeight(name: "floette"))
+                    print(try await manager.getStats(name: "floette"))
                 }
             }
             .padding()
