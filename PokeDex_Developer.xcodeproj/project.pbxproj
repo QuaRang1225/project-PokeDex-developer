@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D62E3BB12BAE97C60088758D /* TypeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BB02BAE97C60088758D /* TypeFilter.swift */; };
 		D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */; };
 		D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */; };
 		D6D0638E2BAB2FDB00ADBEB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6D0638D2BAB2FDB00ADBEB4 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D62E3BB02BAE97C60088758D /* TypeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeFilter.swift; sourceTree = "<group>"; };
 		D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDex_Developer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperApp.swift; sourceTree = "<group>"; };
 		D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				D6F54E602BAC142D00145AFF /* AreaFilter.swift */,
 				D6F54E732BADAD5800145AFF /* FormsFilter.swift */,
 				D6F54E752BADB8AB00145AFF /* StatFilter.swift */,
+				D62E3BB02BAE97C60088758D /* TypeFilter.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */,
 				D6F54E5F2BABFB0800145AFF /* VersionFilter.swift in Sources */,
 				D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */,
+				D62E3BB12BAE97C60088758D /* TypeFilter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

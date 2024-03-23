@@ -35,13 +35,17 @@ struct ContentView: View {
 //                    print(try await speceisManager.getVarieties(num: 1))
                     
                     
-                    print(try await manager.getAbilites(name: "floette"))
-                    let varieties = try await speceisManager.getVarieties(num: 670)
+                    
+                    let varieties = try await speceisManager.getVarieties(num: 20)
                     for vari in varieties{
+                        print("===============================")
+                        print(try await manager.getAbilites(name: vari))
                         print(try await manager.getForms(name: vari))
+                        print(try await manager.getHeight(name: vari))
+                        print(try await manager.getStats(name: vari))
+                        print(try await manager.getTypes(name: vari))
                     }
-                    print(try await manager.getHeight(name: "floette"))
-                    print(try await manager.getStats(name: "floette"))
+                    
                 }
             }
             .padding()

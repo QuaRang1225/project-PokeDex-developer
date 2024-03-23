@@ -14,6 +14,7 @@ protocol Pokemon{
     func getForms(name:String) async throws -> ([String],[String])                      //폼 이름,폼 이미지
     func getHeight(name:String) async throws -> Double                                  //키
     func getStats(name:String) async throws -> ([String],[Int])                         //스탯
+    func getTypes(name:String) async throws -> [String]                                 //타입
 }
 
 class PokemonManager:ObservableObject,Pokemon{
@@ -87,6 +88,11 @@ class PokemonManager:ObservableObject,Pokemon{
     func getStats(name:String) async throws -> ([String],[Int]){
         guard let stats = try await PokemonAPI().pokemonService.fetchPokemon(name).stats else {return ([],[])}
         return (stats.compactMap{StatFilter(rawValue: $0.stat?.name ?? "")?.name},stats.compactMap{$0.baseStat})
+    }
+    
+    func getTypes(name:String) async throws -> [String]{
+        guard let types = try await PokemonAPI().pokemonService.fetchPokemon(name).types else {return ([])}
+        return types.compactMap{TypeFilter(rawValue: $0.type?.name ?? "")?.name}
     }
     
 }
