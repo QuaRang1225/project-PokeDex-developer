@@ -8,6 +8,15 @@
 import Foundation
 import PokemonAPI
 
+
+struct PokemonEvolutionInfo{
+    let image:String
+    let name:String
+    let evolchainWay:String
+    
+}
+
+
 protocol PokemonEvolution{
     func getEvolutionChainUrl(num:Int) async throws -> Int          //포켓몬 진화트리 요청 번호
 }
@@ -21,5 +30,7 @@ class PokeminEvolutoinManager:ObservableObject{
         
         return dexNum
     }
+    
+
     
 }

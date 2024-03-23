@@ -36,17 +36,16 @@ struct ContentView: View {
                     print(try await speceisManager.getName(num: dex))
                     print(try await speceisManager.getPokdexNumbers(num: dex))
                     let varieties = try await speceisManager.getVarieties(num: dex)
-                    print(try await evolutionManager.getEvolutionChainUrl(num: 493))
                     for vari in varieties{
                         print("===============================")
                         print(try await manager.getAbilites(name: vari))
-                        print(try await manager.getForms(name: vari))
+                        print(try await manager.getFormsName(name: vari))
+                        print(try await manager.getFormsImage(name: vari))
                         print(try await manager.getHeight(name: vari))
                         print(try await manager.getStats(name: vari))
                         print(try await manager.getTypes(name: vari))
                         print(try await manager.getWeight(name: vari))
                     }
-                    
                 }
             }
             .padding()
