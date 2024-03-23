@@ -121,7 +121,7 @@ enum FormsFilter: String,CaseIterable {
         case .battleBond:
             return "유대변화"
         case .totemAlola:
-            return "알로라우두머리"
+            return "알로라의 우두머리"
         }
     }
 }

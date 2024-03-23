@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @StateObject var speceisManager = PokemonSpeciesManager()
     @StateObject var manager = PokemonManager()
+    @StateObject var evolutionManager = PokeminEvolutoinManager()
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -24,19 +25,18 @@ struct ContentView: View {
             }
             .onAppear{
                 Task{
-//                    print(Double(100 * (try await speceisManager.getGenderRate(num: 1))/8))
-//                    print(try await speceisManager.getEggGroups(num: 1))
-//                    print(try await speceisManager.getGenra(num: 1))
-//                    print(try await speceisManager.getFormsSwitchable(num: 1))
-//                    print(try await speceisManager.getTextEntried(num: 1))
-//                    print(try await speceisManager.getHatchCounter(num: 1))
-//                    print(try await speceisManager.getName(num: 1))
-//                    print(try await speceisManager.getPokdexNumbers(num: 1))
-//                    print(try await speceisManager.getVarieties(num: 1))
-                    
-                    
-                    
-                    let varieties = try await speceisManager.getVarieties(num: 20)
+                    let dex = 20
+                    print("===============================")
+                    print(Double(100 * (try await speceisManager.getGenderRate(num: dex))/8))
+                    print(try await speceisManager.getEggGroups(num: dex))
+                    print(try await speceisManager.getGenra(num: dex))
+                    print(try await speceisManager.getFormsSwitchable(num: dex))
+                    print(try await speceisManager.getTextEntried(num: dex))
+                    print(try await speceisManager.getHatchCounter(num: dex))
+                    print(try await speceisManager.getName(num: dex))
+                    print(try await speceisManager.getPokdexNumbers(num: dex))
+                    let varieties = try await speceisManager.getVarieties(num: dex)
+                    print(try await evolutionManager.getEvolutionChainUrl(num: 493))
                     for vari in varieties{
                         print("===============================")
                         print(try await manager.getAbilites(name: vari))
