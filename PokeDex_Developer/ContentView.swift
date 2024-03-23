@@ -44,6 +44,7 @@ struct ContentView: View {
                         print(try await manager.getHeight(name: vari))
                         print(try await manager.getStats(name: vari))
                         print(try await manager.getTypes(name: vari))
+                        print(try await manager.getWeight(name: vari))
                     }
                     
                 }
