@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var showSignInView = false
     
+    
     var body: some View {
         
         
@@ -18,15 +19,9 @@ struct ContentView: View {
             LazyVStack(pinnedViews: .sectionHeaders){
                 Section(header:header){
                     VStack(alignment: .leading){
-                        HStack{
-                            Image(systemName: "hare.fill")
-                            Text("포켓몬정보")
-                                .bold()
-                        }
-                        .foregroundStyle(.primary)
-                        .font(.title2)
-                        
+                        PokemonInfoView()
                     }
+                    .foregroundStyle(.primary)
                 }
             }
             
