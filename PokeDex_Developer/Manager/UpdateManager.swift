@@ -19,8 +19,6 @@ class UpdateManager{
     func updatePokemonSpecies(num:Int) async throws{
         
         let pokemonSpeciesManager = PokemonSpeciesManager()
-        let pokemonManager = PokemonManager()
-        
         var pokemon:[String:Any] = [:]
         
         //포켓몬 종 정보
@@ -37,32 +35,34 @@ class UpdateManager{
         pokemon["text_entries_text"] = try await pokemonSpeciesManager.getTextEntries(num: num).1
         pokemon["forms_switchable"] = try await pokemonSpeciesManager.getFormsSwitchable(num: num)
         
-        
+        try await db.collection("pokemon").document("\(num)").setData(pokemon)
        
         //포켓몬 
-//        let forms = try await pokemonSpeciesManager.get
-//        pokemon["text_entries_text"] = try await pokemonManager.getFormsName(name: <#T##String#>)
+        let forms = try await pokemonSpeciesManager.getVarieties(num: num)
+        for form in forms{
+            try await updatePokemon(form: form,num:num)
+        }
         
-        let treeData: [String: Any] = [
-            "name": "Root",
-            "children": [
-                [
-                    "name": "Child1",
-                    "children": []
-                ],
-                [
-                    "name": "Child2",
-                    "children": [
-                        [
-                            "name": "Child2-1",
-                            "children": []
-                        ]
-                    ]
-                ]
-            ]
-        ]
         
-        try await db.collection("trees").document("tree1").setData(treeData)
+    }
+    
+    func updatePokemon(form:String,num:Int)async throws{
+        let pokemonManager = PokemonManager()
+        
+        var pokemon:[String:Any] = [:]
+        pokemon["forms_name"] = try await pokemonManager.getFormsName(name: form)
+        pokemon["forms_images"] = try await pokemonManager.getFormsImage(name: form, getOnlyForms: false)
+        pokemon["types"] = try await pokemonManager.getTypes(name: form)
+        pokemon["height"] = try await pokemonManager.getHeight(name: form)
+        pokemon["weight"] = try await pokemonManager.getWeight(name: form)
+        pokemon["abilites_name"] = try await pokemonManager.getAbilites(name: form).0
+        pokemon["abilites_text"] = try await pokemonManager.getAbilites(name: form).1
+        pokemon["abilites_is_hidden"] = try await pokemonManager.getAbilites(name: form).2
+        pokemon["stats_name"] = try await pokemonManager.getStats(name: form).0
+        pokemon["stats"] = try await pokemonManager.getStats(name: form).1
+        
+        try await db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
+        
     }
     
 }
