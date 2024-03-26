@@ -90,4 +90,8 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         let varieties = pokedexVarieties.compactMap{$0.pokemon?.name}
         return varieties
     }
+    func getCaptureRate(num:Int)async throws -> Int{
+        guard let captureRate = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).captureRate else {return 0}
+        return captureRate
+    }
 }

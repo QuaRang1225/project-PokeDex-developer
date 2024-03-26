@@ -19,5 +19,6 @@ protocol PokemonSpecies{
     func getPokdexNumbers(num:Int) async throws -> ([String],[Int])             //도감 번호 및 도감 지역
     func getVarieties(num:Int) async throws -> [String]                         //리전폼 - 번호로 검색
     func getVarieties(name:String) async throws -> [String]                     //리전폼 - 이름으열 검색
+    func getCaptureRate(num:Int)async throws -> Int                             //포획률
     
 }
