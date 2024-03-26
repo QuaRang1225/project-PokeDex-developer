@@ -94,4 +94,8 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         guard let captureRate = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).captureRate else {return 0}
         return captureRate
     }
+    func getEvolutionFromSpecies(num:Int) async throws -> Bool{
+        guard let evolutionSpecies = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolvesFromSpecies else {return false}
+        return true
+    }
 }

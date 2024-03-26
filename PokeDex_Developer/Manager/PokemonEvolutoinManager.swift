@@ -14,11 +14,11 @@ class PokeminEvolutoinManager:ObservableObject{
     let manager = PokemonManager()
     let speciesmManager = PokemonSpeciesManager()
     
-    func getEvolutionChainUrl(num:Int) async throws -> PokemonEvolutionInfo{
-        guard let url = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolutionChain?.url else {return PokemonEvolutionInfo(image: [], name: "")}
-        guard let dexNum = Int(URL(string: url)?.lastPathComponent ?? "") else {return PokemonEvolutionInfo(image: [], name: "")}
+    func getEvolutionChainUrl(num:Int) async throws -> Int{
+        guard let url = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolutionChain?.url else {return 0}
+        guard let dexNum = Int(URL(string: url)?.lastPathComponent ?? "") else {return 0}
         
-        return try await getEvolutionChain(num: dexNum)
+        return dexNum
     }
     
     func getEvolutionChain(num:Int) async throws -> PokemonEvolutionInfo{
