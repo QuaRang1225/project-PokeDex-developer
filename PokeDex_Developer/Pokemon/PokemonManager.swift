@@ -8,18 +8,10 @@
 import Foundation
 import PokemonAPI
 
-protocol Pokemon{
-    func getAbilites(name:String) async throws -> ([String],[String],[Bool])            //특성/특성설명/숨은 특성인지
-    func getKoreanAbilites(ability:String)async throws -> (String,String)               //한글 특성/한글 특성설명
-    func getFormsImage(name:String) async throws -> [String]                            //폼 이미지
-    func getFormsName(name:String) async throws -> [String]                             //폼 이름
-    func getHeight(name:String) async throws -> Double                                  //키
-    func getStats(name:String) async throws -> ([String],[Int])                         //스탯
-    func getTypes(name:String) async throws -> [String]                                 //타입
-    func getWeight(name:String) async throws -> Double                                  //무게
-}
+
 
 class PokemonManager:ObservableObject,Pokemon{
+    
 
     
     
@@ -49,7 +41,7 @@ class PokemonManager:ObservableObject,Pokemon{
         return (koreanName,koreanText)
     }
     
-    func getFormsImage(name:String) async throws -> [String]{
+    func getFormsImage(name:String,getOnlyForms:Bool) async throws -> [String]{
         let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(name)
         
         let forms = pokemon.forms?.compactMap{$0.name} ?? []        //폼 이름 수집
@@ -64,7 +56,7 @@ class PokemonManager:ObservableObject,Pokemon{
                 if let name = pokemonForm.formName{
                     if name.isEmpty{
                         formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id).png")  //어떠한 모습,폼도 존재하지 않을때
-                    }else{
+                    }else if !getOnlyForms{
                         formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id)-\(name).png")  //다른 모습이 존재할때
                     }
                 }

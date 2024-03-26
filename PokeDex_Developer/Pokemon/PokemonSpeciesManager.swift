@@ -68,6 +68,10 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         guard let names = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).names else { return ""}
         return names.first(where: {$0.language?.name == "ko"})?.name ?? ""
     }
+    func getName(name:String) async throws -> String{
+        guard let names = try await PokemonAPI().pokemonService.fetchPokemonSpecies(name).names else { return ""}
+        return names.first(where: {$0.language?.name == "ko"})?.name ?? ""
+    }
     
     func getPokdexNumbers(num:Int) async throws -> ([String],[Int]){
         guard let pokedexNumbers = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).pokedexNumbers else {return([],[])}
@@ -75,10 +79,15 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         return (koreanArea,pokedexNumbers.compactMap{$0.entryNumber})
     }
     
+    
     func getVarieties(num:Int) async throws -> [String]{
         guard let pokedexVarieties = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).varieties else {return([])}
         let varieties = pokedexVarieties.compactMap{$0.pokemon?.name}
         return varieties
-        
+    }
+    func getVarieties(name:String) async throws -> [String]{
+        guard let pokedexVarieties = try await PokemonAPI().pokemonService.fetchPokemonSpecies(name).varieties else {return([])}
+        let varieties = pokedexVarieties.compactMap{$0.pokemon?.name}
+        return varieties
     }
 }

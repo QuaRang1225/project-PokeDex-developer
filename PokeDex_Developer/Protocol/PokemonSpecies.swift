@@ -14,7 +14,10 @@ protocol PokemonSpecies{
     func getGenderRate(num:Int) async throws -> Int                             //성비
     func getGenra(num:Int) async throws -> String                               //분류
     func getHatchCounter(num:Int) async throws -> Int                           //부화 카운트
-    func getName(num:Int) async throws -> String                                //이름
+    func getName(num:Int) async throws -> String                                //이름 - 번호로 검색
+    func getName(name:String) async throws -> String                            //이름 - 이름으로 검색
     func getPokdexNumbers(num:Int) async throws -> ([String],[Int])             //도감 번호 및 도감 지역
-    func getVarieties(num:Int) async throws -> [String]                         //리전폼
+    func getVarieties(num:Int) async throws -> [String]                         //리전폼 - 번호로 검색
+    func getVarieties(name:String) async throws -> [String]                     //리전폼 - 이름으열 검색
+    
 }
