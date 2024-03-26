@@ -35,6 +35,7 @@ struct PokemonInfoView: View {
                 Button{
                     Task{
                         do{
+//                            try await UpdateManager.shared.updatePokemonEvolution(num: 67)
                             if let first = Int(firstNum),let last = Int(lastNum){
                                 for i in first...last{
                                     try await UpdateManager.shared.updatePokemonSpecies(num: i)
