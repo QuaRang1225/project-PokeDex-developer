@@ -33,7 +33,14 @@ struct PokemonInfoView: View {
                 .font(.body)
                 Spacer()
                 Button{
-                    
+                    Task{
+                        do{
+//                            try await UpdateManager.shared.aa()
+                        }catch{
+                            print(error)
+                        }
+                        
+                    }
                 } label: {
                     Text("업데이트")
                         .padding(5)

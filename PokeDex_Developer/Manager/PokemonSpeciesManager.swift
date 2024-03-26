@@ -31,7 +31,7 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
     }
     
     
-    func getTextEntried(num:Int) async throws -> ([String],[String]){
+    func getTextEntries(num:Int) async throws -> ([String],[String]){
         guard let textEntries = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).flavorTextEntries else { return ([],[]) }
         //한글로 되어있는 도감설명만 필터링
         let koreanFlavorTextEntries = textEntries.filter{$0.language?.name == "ko"}

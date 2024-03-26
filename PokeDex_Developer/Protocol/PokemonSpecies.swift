@@ -9,7 +9,7 @@ import Foundation
 
 protocol PokemonSpecies{
     func getEggGroups(num:Int) async throws -> [String]                         //알그룹
-    func getTextEntried(num:Int) async throws -> ([String],[String])            //도감 설명
+    func getTextEntries(num:Int) async throws -> ([String],[String])            //도감 설명 - 버전,설명
     func getFormsSwitchable(num:Int) async throws -> Bool                       //폼체인지 유무
     func getGenderRate(num:Int) async throws -> Int                             //성비
     func getGenra(num:Int) async throws -> String                               //분류
