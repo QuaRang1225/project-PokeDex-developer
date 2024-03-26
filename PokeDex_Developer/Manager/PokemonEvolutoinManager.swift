@@ -9,7 +9,7 @@ import Foundation
 import PokemonAPI
 
 
-class PokeminEvolutoinManager:ObservableObject{
+class PokemonEvolutoinManager:ObservableObject{
     
     let manager = PokemonManager()
     let speciesmManager = PokemonSpeciesManager()

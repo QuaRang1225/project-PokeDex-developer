@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D62E3BB12BAE97C60088758D /* TypeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BB02BAE97C60088758D /* TypeFilter.swift */; };
-		D62E3BB32BAE9BEB0088758D /* PokeminEvolutoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BB22BAE9BEB0088758D /* PokeminEvolutoinManager.swift */; };
+		D62E3BB32BAE9BEB0088758D /* PokemonEvolutoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BB22BAE9BEB0088758D /* PokemonEvolutoinManager.swift */; };
 		D62E3BB52BAEB2BE0088758D /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BB42BAEB2BE0088758D /* Pokemon.swift */; };
 		D62E3BBA2BB296620088758D /* PokemonEvolutionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BB92BB296620088758D /* PokemonEvolutionInfo.swift */; };
 		D62E3BBC2BB296E90088758D /* PokemonEvolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BBB2BB296E90088758D /* PokemonEvolution.swift */; };
@@ -59,7 +59,7 @@
 
 /* Begin PBXFileReference section */
 		D62E3BB02BAE97C60088758D /* TypeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeFilter.swift; sourceTree = "<group>"; };
-		D62E3BB22BAE9BEB0088758D /* PokeminEvolutoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeminEvolutoinManager.swift; sourceTree = "<group>"; };
+		D62E3BB22BAE9BEB0088758D /* PokemonEvolutoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEvolutoinManager.swift; sourceTree = "<group>"; };
 		D62E3BB42BAEB2BE0088758D /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		D62E3BB92BB296620088758D /* PokemonEvolutionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEvolutionInfo.swift; sourceTree = "<group>"; };
 		D62E3BBB2BB296E90088758D /* PokemonEvolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEvolution.swift; sourceTree = "<group>"; };
@@ -231,7 +231,7 @@
 			children = (
 				D6D063BE2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift */,
 				D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */,
-				D62E3BB22BAE9BEB0088758D /* PokeminEvolutoinManager.swift */,
+				D62E3BB22BAE9BEB0088758D /* PokemonEvolutoinManager.swift */,
 				D6B4C05E2BB2B1BC009D0D25 /* UpdateManager.swift */,
 			);
 			path = Manager;
@@ -411,7 +411,7 @@
 				D6B4C05F2BB2B1BC009D0D25 /* UpdateManager.swift in Sources */,
 				D62E3BB52BAEB2BE0088758D /* Pokemon.swift in Sources */,
 				D6B4C0512BB2A4A4009D0D25 /* AuthManager.swift in Sources */,
-				D62E3BB32BAE9BEB0088758D /* PokeminEvolutoinManager.swift in Sources */,
+				D62E3BB32BAE9BEB0088758D /* PokemonEvolutoinManager.swift in Sources */,
 				D62E3BBF2BB2A0730088758D /* EvolTreeNodeView.swift in Sources */,
 				D6F54E612BAC142D00145AFF /* AreaFilter.swift in Sources */,
 				D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */,

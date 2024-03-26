@@ -53,8 +53,8 @@ class PokemonManager:ObservableObject,Pokemon{
             let pokemonForm = try await PokemonAPI().pokemonService.fetchPokemonForm(form)
             
             if isDefault{
-                if let name = pokemonForm.formName{
-                    if name.isEmpty{
+                if let formDefaults = pokemonForm.isDefault{
+                    if formDefaults{
                         formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id).png")  //어떠한 모습,폼도 존재하지 않을때
                     }else if !getOnlyForms{
                         formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id)-\(name).png")  //다른 모습이 존재할때

@@ -10,7 +10,7 @@ import SwiftUI
 struct RequestTestView: View {
     @StateObject var speceisManager = PokemonSpeciesManager()
     @StateObject var manager = PokemonManager()
-    @StateObject var evolutionManager = PokeminEvolutoinManager()
+    @StateObject var evolutionManager = PokemonEvolutoinManager()
     
     @State var node: PokemonEvolutionInfo?
     
@@ -44,7 +44,7 @@ struct RequestTestView: View {
 //                        print(try await manager.getWeight(name: vari))
 //                    }
                 
-                node = try await evolutionManager.getEvolutionChainUrl(num: dex)
+                node = try await evolutionManager.getEvolutionChain(num: 1)
             }
         }
     }
