@@ -11,8 +11,8 @@ import PokemonAPI
 
 class PokemonEvolutoinManager:ObservableObject{
     
-    let manager = PokemonManager()
-    let speciesmManager = PokemonSpeciesManager()
+    static let shared = PokemonEvolutoinManager()
+    private init(){}
     
     func getEvolutionChainUrl(num:Int) async throws -> Int{
         guard let url = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolutionChain?.url else {return 0}
@@ -32,18 +32,18 @@ class PokemonEvolutoinManager:ObservableObject{
                 var PokemonThird:[PokemonEvolutionInfo] = []
                 if let thirdChains = secondChain.evolvesTo {    //3단계 포켓몬 - 포켓몬 영문명 반환
                     for thirdChain in thirdChains{
-                        let thirdPokemonName = try await speciesmManager.getName(name: thirdChain.species?.name ?? "")
-                        let thirdPokemonImages = try await manager.getFormsImage(name: thirdChain.species?.name ?? "",getOnlyForms: true)
+                        let thirdPokemonName = try await PokemonSpeciesManager.shared.getName(name: thirdChain.species?.name ?? "")
+                        let thirdPokemonImages = try await PokemonManager.shared.getFormsImage(name: thirdChain.species?.name ?? "",getOnlyForms: true)
                         PokemonThird.append(PokemonEvolutionInfo(image: thirdPokemonImages, name: thirdPokemonName))
                     }
                 }
-                let secondPokemonName = try await speciesmManager.getName(name: secondChain.species?.name ?? "")
-                let secondPokemonImages = try await manager.getFormsImage(name: secondChain.species?.name ?? "",getOnlyForms: true)
+                let secondPokemonName = try await PokemonSpeciesManager.shared.getName(name: secondChain.species?.name ?? "")
+                let secondPokemonImages = try await PokemonManager.shared.getFormsImage(name: secondChain.species?.name ?? "",getOnlyForms: true)
                 PokemonSecond.append(PokemonEvolutionInfo(image: secondPokemonImages, name: secondPokemonName,children: PokemonThird))
             }
         }
-        let firstPokemonName = try await speciesmManager.getName(name: first)
-        let firstPokemonImages = try await manager.getFormsImage(name: first,getOnlyForms: true)
+        let firstPokemonName = try await PokemonSpeciesManager.shared.getName(name: first)
+        let firstPokemonImages = try await PokemonManager.shared.getFormsImage(name: first,getOnlyForms: true)
         return PokemonEvolutionInfo(image: firstPokemonImages, name: firstPokemonName,children: PokemonSecond)
         
         

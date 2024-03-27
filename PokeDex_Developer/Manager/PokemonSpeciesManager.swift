@@ -13,7 +13,8 @@ import PokemonAPI
 
 class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
     
-    
+    static let shared = PokemonSpeciesManager()
+    private init(){}
     
     func getEggGroups(num:Int) async throws -> [String]{
         
@@ -95,7 +96,7 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         return captureRate
     }
     func getEvolutionFromSpecies(num:Int) async throws -> Bool{
-        guard let evolutionSpecies = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolvesFromSpecies else {return false}
+        guard  (try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolvesFromSpecies != nil) else {return false}
         return true
     }
 }

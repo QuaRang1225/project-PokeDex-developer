@@ -12,7 +12,9 @@ import PokemonAPI
 
 class PokemonManager:ObservableObject,Pokemon{
     
-
+    static let shared = PokemonManager()
+    private init(){}
+    
     private func getKoreanAbilites(ability:String)async throws -> (String,String){
         let pokemonKoreanAbilites = try await PokemonAPI().pokemonService.fetchAbility(ability)
         

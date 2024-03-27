@@ -9,17 +9,16 @@ import Foundation
 import FirebaseFirestoreSwift
 import Firebase
 
-class UpdateManager{
-    
-    static let shared = UpdateManager()
-    private init(){}
+class UpdateViewModel:ObservableObject{
     
     private let db = Firestore.firestore()
+    private let pokemonSpeciesManager = PokemonSpeciesManager.shared
+    private let pokemonEvolutionManager = PokemonEvolutoinManager.shared
+    private let pokemonManager = PokemonManager.shared
     
     func updatePokemonSpecies(num:Int) async throws{
         
-        let pokemonSpeciesManager = PokemonSpeciesManager()
-        let pokemonEvolutionManager = PokemonEvolutoinManager()
+        
         var pokemon:[String:Any] = [:]
         
         //포켓몬 종 정보
@@ -37,7 +36,8 @@ class UpdateManager{
         pokemon["forms_switchable"] = try await pokemonSpeciesManager.getFormsSwitchable(num: num)
         pokemon["evolution_tree"] = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
         
-        try await db.collection("pokemon").document("\(num)").setData(pokemon)
+//        print(pokemon)
+//        try await db.collection("pokemon").document("\(num)").setData(pokemon)
        
         //포켓몬 
         let forms = try await pokemonSpeciesManager.getVarieties(num: num)
@@ -50,7 +50,6 @@ class UpdateManager{
     }
     
     func updatePokemon(form:String,num:Int)async throws{
-        let pokemonManager = PokemonManager()
         
         var pokemon:[String:Any] = [:]
         pokemon["forms_name"] = try await pokemonManager.getFormsName(name: form)
@@ -64,13 +63,14 @@ class UpdateManager{
         pokemon["stats_name"] = try await pokemonManager.getStats(name: form).0
         pokemon["stats"] = try await pokemonManager.getStats(name: form).1
         
-        try await db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
+//        print(pokemon)
+//        try await db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
         
     }
     
     func updatePokemonEvolution(num:Int) async throws{
         
-        let pokemonEvolutionManager = PokemonEvolutoinManager()
+  
         let chain = try await pokemonEvolutionManager.getEvolutionChain(num: num)
         
         var rootTree:[String:Any] = [:]
@@ -94,8 +94,8 @@ class UpdateManager{
             middleTree.append(middle)
         }
         rootTree["evol_to"] = middleTree
-      
-        try await db.collection("evolution").document("\(num)").setData(rootTree)
+        print(rootTree)
+//        try await db.collection("evolution").document("\(num)").setData(rootTree)
     }
     
 }

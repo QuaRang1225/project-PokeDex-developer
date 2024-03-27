@@ -15,11 +15,14 @@
 		D62E3BBF2BB2A0730088758D /* EvolTreeNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BBE2BB2A0730088758D /* EvolTreeNodeView.swift */; };
 		D62E3BC12BB2A0A80088758D /* RequestTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BC02BB2A0A80088758D /* RequestTestView.swift */; };
 		D6B4C0512BB2A4A4009D0D25 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0502BB2A4A4009D0D25 /* AuthManager.swift */; };
-		D6B4C0542BB2A521009D0D25 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D6B4C0532BB2A521009D0D25 /* FirebaseAuth */; };
 		D6B4C0582BB2A657009D0D25 /* SignEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0572BB2A657009D0D25 /* SignEmailViewModel.swift */; };
 		D6B4C05A2BB2A741009D0D25 /* SignEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0592BB2A741009D0D25 /* SignEmailView.swift */; };
 		D6B4C05D2BB2B070009D0D25 /* PokemonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C05C2BB2B070009D0D25 /* PokemonInfoView.swift */; };
-		D6B4C05F2BB2B1BC009D0D25 /* UpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C05E2BB2B1BC009D0D25 /* UpdateManager.swift */; };
+		D6B4C05F2BB2B1BC009D0D25 /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C05E2BB2B1BC009D0D25 /* UpdateViewModel.swift */; };
+		D6B4C0622BB309CD009D0D25 /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6B4C0612BB309CD009D0D25 /* PokemonAPI */; };
+		D6B4C0652BB309ED009D0D25 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D6B4C0642BB309ED009D0D25 /* FirebaseAuth */; };
+		D6B4C0672BB309ED009D0D25 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D6B4C0662BB309ED009D0D25 /* FirebaseFirestore */; };
+		D6B4C0692BB309ED009D0D25 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D6B4C0682BB309ED009D0D25 /* FirebaseFirestoreSwift */; };
 		D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */; };
 		D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */; };
 		D6D0638E2BAB2FDB00ADBEB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6D0638D2BAB2FDB00ADBEB4 /* Assets.xcassets */; };
@@ -28,14 +31,11 @@
 		D6D063A52BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063A42BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITests.swift */; };
 		D6D063A72BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063A62BAB2FDB00ADBEB4 /* PokeDex_DeveloperUITestsLaunchTests.swift */; };
 		D6D063B42BAB363800ADBEB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D063B32BAB363800ADBEB4 /* GoogleService-Info.plist */; };
-		D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */; };
-		D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */; };
 		D6D063BF2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063BE2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift */; };
 		D6F54E5F2BABFB0800145AFF /* VersionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E5E2BABFB0800145AFF /* VersionFilter.swift */; };
 		D6F54E612BAC142D00145AFF /* AreaFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E602BAC142D00145AFF /* AreaFilter.swift */; };
 		D6F54E6D2BAC419300145AFF /* PokemonSpecies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E6C2BAC419300145AFF /* PokemonSpecies.swift */; };
 		D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */; };
-		D6F54E722BAC668700145AFF /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6F54E712BAC668700145AFF /* PokemonAPI */; };
 		D6F54E742BADAD5800145AFF /* FormsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E732BADAD5800145AFF /* FormsFilter.swift */; };
 		D6F54E762BADB8AB00145AFF /* StatFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F54E752BADB8AB00145AFF /* StatFilter.swift */; };
 /* End PBXBuildFile section */
@@ -69,7 +69,7 @@
 		D6B4C0572BB2A657009D0D25 /* SignEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEmailViewModel.swift; sourceTree = "<group>"; };
 		D6B4C0592BB2A741009D0D25 /* SignEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEmailView.swift; sourceTree = "<group>"; };
 		D6B4C05C2BB2B070009D0D25 /* PokemonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoView.swift; sourceTree = "<group>"; };
-		D6B4C05E2BB2B1BC009D0D25 /* UpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateManager.swift; sourceTree = "<group>"; };
+		D6B4C05E2BB2B1BC009D0D25 /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDex_Developer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperApp.swift; sourceTree = "<group>"; };
 		D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,10 +95,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6F54E722BAC668700145AFF /* PokemonAPI in Frameworks */,
-				D6D063B72BAB367B00ADBEB4 /* FirebaseFirestore in Frameworks */,
-				D6D063B92BAB367B00ADBEB4 /* FirebaseFirestoreSwift in Frameworks */,
-				D6B4C0542BB2A521009D0D25 /* FirebaseAuth in Frameworks */,
+				D6B4C0622BB309CD009D0D25 /* PokemonAPI in Frameworks */,
+				D6B4C0652BB309ED009D0D25 /* FirebaseAuth in Frameworks */,
+				D6B4C0672BB309ED009D0D25 /* FirebaseFirestore in Frameworks */,
+				D6B4C0692BB309ED009D0D25 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,7 +232,7 @@
 				D6D063BE2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift */,
 				D6F54E6E2BAC449E00145AFF /* PokemonManager.swift */,
 				D62E3BB22BAE9BEB0088758D /* PokemonEvolutoinManager.swift */,
-				D6B4C05E2BB2B1BC009D0D25 /* UpdateManager.swift */,
+				D6B4C05E2BB2B1BC009D0D25 /* UpdateViewModel.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -276,10 +276,10 @@
 			);
 			name = PokeDex_Developer;
 			packageProductDependencies = (
-				D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */,
-				D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */,
-				D6F54E712BAC668700145AFF /* PokemonAPI */,
-				D6B4C0532BB2A521009D0D25 /* FirebaseAuth */,
+				D6B4C0612BB309CD009D0D25 /* PokemonAPI */,
+				D6B4C0642BB309ED009D0D25 /* FirebaseAuth */,
+				D6B4C0662BB309ED009D0D25 /* FirebaseFirestore */,
+				D6B4C0682BB309ED009D0D25 /* FirebaseFirestoreSwift */,
 			);
 			productName = PokeDex_Developer;
 			productReference = D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */;
@@ -354,8 +354,8 @@
 			);
 			mainGroup = D6D0637D2BAB2FD900ADBEB4;
 			packageReferences = (
-				D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D6F54E702BAC668700145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */,
+				D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */,
+				D6B4C0632BB309ED009D0D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D6D063872BAB2FD900ADBEB4 /* Products */;
 			projectDirPath = "";
@@ -408,7 +408,7 @@
 				D6F54E742BADAD5800145AFF /* FormsFilter.swift in Sources */,
 				D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */,
 				D6D063BF2BAB3A1400ADBEB4 /* PokemonSpeciesManager.swift in Sources */,
-				D6B4C05F2BB2B1BC009D0D25 /* UpdateManager.swift in Sources */,
+				D6B4C05F2BB2B1BC009D0D25 /* UpdateViewModel.swift in Sources */,
 				D62E3BB52BAEB2BE0088758D /* Pokemon.swift in Sources */,
 				D6B4C0512BB2A4A4009D0D25 /* AuthManager.swift in Sources */,
 				D62E3BB32BAE9BEB0088758D /* PokemonEvolutoinManager.swift in Sources */,
@@ -754,15 +754,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.23.0;
-			};
-		};
-		D6F54E702BAC668700145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */ = {
+		D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/QuaRang1225/PokemonAPI.git";
 			requirement = {
@@ -770,28 +762,36 @@
 				revision = ba3159257c7cbbdd13e1612a864a14b3be9545e8;
 			};
 		};
+		D6B4C0632BB309ED009D0D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D6B4C0532BB2A521009D0D25 /* FirebaseAuth */ = {
+		D6B4C0612BB309CD009D0D25 /* PokemonAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */;
+			productName = PokemonAPI;
+		};
+		D6B4C0642BB309ED009D0D25 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6B4C0632BB309ED009D0D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		D6D063B62BAB367B00ADBEB4 /* FirebaseFirestore */ = {
+		D6B4C0662BB309ED009D0D25 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D6B4C0632BB309ED009D0D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
-		D6D063B82BAB367B00ADBEB4 /* FirebaseFirestoreSwift */ = {
+		D6B4C0682BB309ED009D0D25 /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D6D063B52BAB367B00ADBEB4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D6B4C0632BB309ED009D0D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
-		};
-		D6F54E712BAC668700145AFF /* PokemonAPI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D6F54E702BAC668700145AFF /* XCRemoteSwiftPackageReference "PokemonAPI" */;
-			productName = PokemonAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
