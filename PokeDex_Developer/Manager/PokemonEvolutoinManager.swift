@@ -33,17 +33,17 @@ class PokemonEvolutoinManager:ObservableObject{
                 if let thirdChains = secondChain.evolvesTo {    //3단계 포켓몬 - 포켓몬 영문명 반환
                     for thirdChain in thirdChains{
                         let thirdPokemonName = try await PokemonSpeciesManager.shared.getName(name: thirdChain.species?.name ?? "")
-                        let thirdPokemonImages = try await PokemonManager.shared.getFormsImage(name: thirdChain.species?.name ?? "",getOnlyForms: true)
+                        let thirdPokemonImages = try await PokemonManager.shared.getFormsImage(name: FormsNameFilter.compareFormsName(name: thirdChain.species?.name ?? ""),getOnlyForms: true)
                         PokemonThird.append(PokemonEvolutionInfo(image: thirdPokemonImages, name: thirdPokemonName))
                     }
                 }
                 let secondPokemonName = try await PokemonSpeciesManager.shared.getName(name: secondChain.species?.name ?? "")
-                let secondPokemonImages = try await PokemonManager.shared.getFormsImage(name: secondChain.species?.name ?? "",getOnlyForms: true)
+                let secondPokemonImages = try await PokemonManager.shared.getFormsImage(name: FormsNameFilter.compareFormsName(name: secondChain.species?.name ?? ""),getOnlyForms: true)
                 PokemonSecond.append(PokemonEvolutionInfo(image: secondPokemonImages, name: secondPokemonName,children: PokemonThird))
             }
         }
         let firstPokemonName = try await PokemonSpeciesManager.shared.getName(name: first)
-        let firstPokemonImages = try await PokemonManager.shared.getFormsImage(name: first,getOnlyForms: true)
+        let firstPokemonImages = try await PokemonManager.shared.getFormsImage(name: FormsNameFilter.compareFormsName(name: first),getOnlyForms: true)
         return PokemonEvolutionInfo(image: firstPokemonImages, name: firstPokemonName,children: PokemonSecond)
         
         

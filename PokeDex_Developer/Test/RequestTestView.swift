@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct RequestTestView: View {
-    @StateObject var speceisManager = PokemonSpeciesManager()
-    @StateObject var manager = PokemonManager()
-    @StateObject var evolutionManager = PokemonEvolutoinManager()
+//    @StateObject var speceisManager = PokemonSpeciesManager()
+//    @StateObject var manager = PokemonManager()
+//    @StateObject var evolutionManager = PokemonEvolutoinManager()
     
-    @State var node: PokemonEvolutionInfo?
+//    @State var node: PokemonEvolutionInfo?
     
     var body: some View {
         VStack{
-            if let node{
-                EvolTreeNodeView(node: node)
-            }
+//            if let node{
+//                EvolTreeNodeView(node: node)
+//            }
         }
         .onAppear{
             Task{
@@ -44,7 +44,7 @@ struct RequestTestView: View {
 //                        print(try await manager.getWeight(name: vari))
 //                    }
                 
-                node = try await evolutionManager.getEvolutionChain(num: 1)
+//                node = try await evolutionManager.getEvolutionChain(num: 1)
             }
         }
     }

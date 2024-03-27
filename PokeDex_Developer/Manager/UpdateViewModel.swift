@@ -70,7 +70,7 @@ class UpdateViewModel:ObservableObject{
     
     func updatePokemonEvolution(num:Int) async throws{
         
-  
+       
         let chain = try await pokemonEvolutionManager.getEvolutionChain(num: num)
         
         var rootTree:[String:Any] = [:]

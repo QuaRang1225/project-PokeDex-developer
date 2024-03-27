@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PokemonInfoView: View {
+    @StateObject var vm = UpdateViewModel()
     @State var firstNum = ""
     @State var lastNum = ""
     
@@ -35,12 +36,12 @@ struct PokemonInfoView: View {
                 Button{
                     Task{
                         do{
-//                            try await UpdateManager.shared.updatePokemonEvolution(num: 67)
                             if let first = Int(firstNum),let last = Int(lastNum){
                                 for i in first...last{
-                                    try await UpdateManager.shared.updatePokemonSpecies(num: i)
+                                    try await vm.updatePokemonSpecies(num: i)
                                 }
                             }
+//                            try await vm.updatePokemonEvolution(num: 213)
                         }catch{
                             print(error)
                         }

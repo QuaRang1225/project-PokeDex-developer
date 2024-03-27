@@ -45,7 +45,7 @@ class PokemonManager:ObservableObject,Pokemon{
     
     func getFormsImage(name:String,getOnlyForms:Bool) async throws -> [String]{
         let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(name)
-        
+
         let forms = pokemon.forms?.compactMap{$0.name} ?? []        //폼 이름 수집
         guard let isDefault = pokemon.isDefault else {return [] }      //디폴트 모습인지 아닌지를 판단하여 이미지 저장 로직 변경
         guard let id = pokemon.id else {return []}                     //id
