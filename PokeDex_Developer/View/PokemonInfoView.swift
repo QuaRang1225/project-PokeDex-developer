@@ -12,6 +12,7 @@ struct PokemonInfoView: View {
     @State var firstNum = ""
     @State var lastNum = ""
     
+    
     var body: some View {
         VStack(alignment: .leading){
             HStack(alignment: .bottom){
