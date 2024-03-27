@@ -36,8 +36,7 @@ class UpdateViewModel:ObservableObject{
         pokemon["forms_switchable"] = try await pokemonSpeciesManager.getFormsSwitchable(num: num)
         pokemon["evolution_tree"] = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
         
-//        print(pokemon)
-//        try await db.collection("pokemon").document("\(num)").setData(pokemon)
+        try await db.collection("pokemon").document("\(num)").setData(pokemon)
        
         //포켓몬 
         let forms = try await pokemonSpeciesManager.getVarieties(num: num)
@@ -63,8 +62,7 @@ class UpdateViewModel:ObservableObject{
         pokemon["stats_name"] = try await pokemonManager.getStats(name: form).0
         pokemon["stats"] = try await pokemonManager.getStats(name: form).1
         
-//        print(pokemon)
-//        try await db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
+        try await db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
         
     }
     
@@ -94,8 +92,7 @@ class UpdateViewModel:ObservableObject{
             middleTree.append(middle)
         }
         rootTree["evol_to"] = middleTree
-        print(rootTree)
-//        try await db.collection("evolution").document("\(num)").setData(rootTree)
+        try await db.collection("evolution").document("\(num)").setData(rootTree)
     }
     
 }
