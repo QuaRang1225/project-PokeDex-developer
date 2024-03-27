@@ -37,6 +37,7 @@ struct PokemonInfoView: View {
                 Button{
                     Task{
                         do{
+                            
                             if let first = Int(firstNum),let last = Int(lastNum){
                                 for i in first...last{
                                     try await vm.updatePokemonSpecies(num: i)

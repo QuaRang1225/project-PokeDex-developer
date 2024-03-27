@@ -61,7 +61,7 @@ class PokemonManager:ObservableObject,Pokemon{
                     if formDefaults{
                         formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id).png")  //어떠한 모습,폼도 존재하지 않을때
                     }else if !getOnlyForms{
-                        formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id)-\(name).png")  //다른 모습이 존재할때
+                        formInfo.append("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(id)-\(pokemonForm.formName ?? "").png")  //다른 모습이 존재할때
                     }
                 }
             }else{
@@ -79,7 +79,6 @@ class PokemonManager:ObservableObject,Pokemon{
         var formInfo:[String] = []  //폼 이름, 이미지 경로
         for form in forms{
             let pokemonForm = try await PokemonAPI().pokemonService.fetchPokemonForm(form)
-            
             
             if let name = pokemonForm.formNames?.first(where: {$0.language?.name == "ko"})?.name{   //한글 폼이름이 있는 경우
                 formInfo.append(name)
