@@ -16,59 +16,89 @@ class UpdateViewModel:ObservableObject{
     private let pokemonEvolutionManager = PokemonEvolutoinManager.shared
     private let pokemonManager = PokemonManager.shared
     
-    func updatePokemonSpecies(num:Int) async throws{
+    func updatePokemonInfo(num:Int) async throws{
         
+        //포켓몬 데이터 firestore에 저장
+        let pokemonSpecies = try await self.getPokemonSpecies(num: num)
+        try await db.collection("pokemon").document("\(num)").setData(pokemonSpecies)
         
-        var pokemon:[String:Any] = [:]
-        
-        //포켓몬 종 정보
-        pokemon["num"] = num
-        pokemon["dex_region"] = try await pokemonSpeciesManager.getPokdexNumbers(num: num).0
-        pokemon["dex_num"] = try await pokemonSpeciesManager.getPokdexNumbers(num: num).1
-        pokemon["name"] = try await pokemonSpeciesManager.getName(num: num)
-        pokemon["genra"] = try await pokemonSpeciesManager.getGenra(num: num)
-        pokemon["egg_group"] = try await pokemonSpeciesManager.getEggGroups(num: num)
-        pokemon["gender_rate"] = try await pokemonSpeciesManager.getGenderRate(num: num)
-        pokemon["capture_rate"] = try await pokemonSpeciesManager.getCaptureRate(num: num)
-        pokemon["hatch_counter"] = try await pokemonSpeciesManager.getHatchCounter(num: num)
-        pokemon["text_entries_version"] = try await pokemonSpeciesManager.getTextEntries(num: num).0
-        pokemon["text_entries_text"] = try await pokemonSpeciesManager.getTextEntries(num: num).1
-        pokemon["forms_switchable"] = try await pokemonSpeciesManager.getFormsSwitchable(num: num)
-        pokemon["evolution_tree"] = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
-        
-//        try await db.collection("pokemon").document("\(num)").setData(pokemon)
-       
-        //포켓몬 
+        //포켓몬
         let forms = try await pokemonSpeciesManager.getVarieties(num: num)
-        for form in forms{
-            try await updatePokemon(form: form,num:num)
+        await withThrowingTaskGroup(of: Void.self) { group in
+            for form in forms{
+                group.addTask {
+                    let pokemon = try await self.getPokemon(form: form,num:num)
+                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
+                }
+            }
         }
+        //포켓몬 진화트리
         if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
-            try await updatePokemonEvolution(num: try await pokemonEvolutionManager.getEvolutionChainUrl(num: num))
+            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
+            let chainDic = try await getPokemonEvolution(num:chainNum)
+            try await db.collection("evolution").document("\(num)").setData(chainDic)
         }
     }
     
-    func updatePokemon(form:String,num:Int)async throws{
-        
-        var pokemon:[String:Any] = [:]
-        pokemon["forms_name"] = try await pokemonManager.getFormsName(name: form)
-        pokemon["forms_images"] = try await pokemonManager.getFormsImage(name: form, getOnlyForms: false)
-        pokemon["types"] = try await pokemonManager.getTypes(name: form)
-        pokemon["height"] = try await pokemonManager.getHeight(name: form)
-        pokemon["weight"] = try await pokemonManager.getWeight(name: form)
-        pokemon["abilites_name"] = try await pokemonManager.getAbilites(name: form).0
-        pokemon["abilites_text"] = try await pokemonManager.getAbilites(name: form).1
-        pokemon["abilites_is_hidden"] = try await pokemonManager.getAbilites(name: form).2
-        pokemon["stats_name"] = try await pokemonManager.getStats(name: form).0
-        pokemon["stats"] = try await pokemonManager.getStats(name: form).1
-        
-//        try await db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
-        
-    }
     
-    func updatePokemonEvolution(num:Int) async throws{
+    
+    
+    func getPokemonSpecies(num: Int) async throws -> [String: Any] {
+        async let dexNumbers = self.pokemonSpeciesManager.getPokdexNumbers(num: num)
+        async let name =  self.pokemonSpeciesManager.getName(num: num)
+        async let genra =  self.pokemonSpeciesManager.getGenra(num: num)
+        async let eggGroups =  self.pokemonSpeciesManager.getEggGroups(num: num)
+        async let genderRate =  self.pokemonSpeciesManager.getGenderRate(num: num)
+        async let captureRate = self.pokemonSpeciesManager.getCaptureRate(num: num)
+        async let hatchCounter =  self.pokemonSpeciesManager.getHatchCounter(num: num)
+        async let textEntries =  self.pokemonSpeciesManager.getTextEntries(num: num)
+        async let formsSwitchable =  self.pokemonSpeciesManager.getFormsSwitchable(num: num)
+        async let evolutionChainUrl =  self.pokemonEvolutionManager.getEvolutionChainUrl(num: num)
         
-       
+        
+        return await [
+            "num" : num,
+            "dex_region": try dexNumbers.0,
+            "dex_num": try dexNumbers.1,
+            "name": try name,
+            "genra": try genra,
+            "egg_group": try eggGroups,
+            "gender_rate": try genderRate,
+            "capture_rate": try captureRate,
+            "hatch_counter": try hatchCounter,
+            "text_entries_version": try textEntries.0,
+            "text_entries_text": try textEntries.1,
+            "forms_switchable": try formsSwitchable,
+            "evolution_tree": try evolutionChainUrl
+        ] as [String : Any]
+    }
+    func getPokemon(form:String,num:Int)async throws -> [String:Any]{
+  
+        async let formsName = pokemonManager.getFormsName(name: form)
+        async let formsImages = try await pokemonManager.getFormsImage(name: form, getOnlyForms: false)
+        async let types = try await pokemonManager.getTypes(name: form)
+        async let height = try await pokemonManager.getHeight(name: form)
+        async let weight = try await pokemonManager.getWeight(name: form)
+        async let abilites = try await pokemonManager.getAbilites(name: form)
+        async let stats = try await pokemonManager.getStats(name: form)
+        
+        return try await[
+            "forms_name" : formsName,
+            "forms_images" : formsImages,
+            "types" : types,
+            "height" : height,
+            "weight" : weight,
+            "abilites_name" : abilites.0,
+            "abilites_text" : abilites.1,
+            "abilites_isHidden" : abilites.2,
+            "stats_name" : stats.0,
+            "stats" : stats.1
+            
+            
+        ]
+    }
+    func getPokemonEvolution(num:Int) async throws -> [String:Any]{
+        
         let chain = try await pokemonEvolutionManager.getEvolutionChain(num: num)
         
         var rootTree:[String:Any] = [:]
@@ -92,7 +122,11 @@ class UpdateViewModel:ObservableObject{
             middleTree.append(middle)
         }
         rootTree["evol_to"] = middleTree
-//        try await db.collection("evolution").document("\(num)").setData(rootTree)
+        
+        return rootTree
+        
     }
-    
 }
+
+
+

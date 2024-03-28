@@ -15,6 +15,7 @@ class PokemonEvolutoinManager:ObservableObject{
     private init(){}
     
     func getEvolutionChainUrl(num:Int) async throws -> Int{
+
         guard let url = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolutionChain?.url else {return 0}
         guard let dexNum = Int(URL(string: url)?.lastPathComponent ?? "") else {return 0}
         

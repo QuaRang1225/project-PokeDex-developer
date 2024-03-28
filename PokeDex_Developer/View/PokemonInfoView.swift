@@ -36,18 +36,15 @@ struct PokemonInfoView: View {
                 Spacer()
                 Button{
                     Task{
-                        do{
-                            
+                        await withThrowingTaskGroup(of: Void.self) { group in
                             if let first = Int(firstNum),let last = Int(lastNum){
                                 for i in first...last{
-                                    try await vm.updatePokemonSpecies(num: i)
+                                    group.addTask {
+                                        try await vm.updatePokemonInfo(num: i)
+                                    }
                                 }
                             }
-//                            try await vm.updatePokemonEvolution(num: 213)
-                        }catch{
-                            print(error)
                         }
-                        
                     }
                 } label: {
                     Text("업데이트")
