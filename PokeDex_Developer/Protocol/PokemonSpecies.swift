@@ -21,5 +21,6 @@ protocol PokemonSpecies{
     func getVarieties(name:String) async throws -> [String]                     //리전폼 - 이름으열 검색
     func getCaptureRate(num:Int)async throws -> Int                             //포획률
     func getEvolutionFromSpecies(num:Int) async throws -> Bool                  //진화전 포켓몬이 있는지 확인
+    func getColor(num:Int) async throws -> String                               //포켓몬 색상
     
 }

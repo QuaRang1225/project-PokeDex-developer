@@ -99,4 +99,8 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         guard  (try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolvesFromSpecies != nil) else {return false}
         return true
     }
+    func getColor(num:Int) async throws -> String {
+        guard  let color = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).color?.name else {return ""}
+        return color
+    }
 }
