@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 import Firebase
+import Alamofire
 
 class UpdateViewModel:ObservableObject{
     
@@ -19,25 +20,55 @@ class UpdateViewModel:ObservableObject{
     func updatePokemonInfo(num:Int) async throws{
         
         //포켓몬 데이터 firestore에 저장
-        let pokemonSpecies = try await self.getPokemonSpecies(num: num)
-        try await db.collection("pokemon").document("\(num)").setData(pokemonSpecies)
+        let params = try await self.getPokemonSpecies(num: num)
         
-        //포켓몬
-        let forms = try await pokemonSpeciesManager.getVarieties(num: num)
-        await withThrowingTaskGroup(of: Void.self) { group in
-            for form in forms{
-                group.addTask {
-                    let pokemon = try await self.getPokemon(form: form,num:num)
-                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
-                }
+        let url = "http://220.123.52.178:3000/pokemons"
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = "POST"
+        
+        do {
+            try request.httpBody = JSONSerialization.data(withJSONObject: params, options: [])
+            print(params)
+        } catch {
+            print("http Body Error")
+        }
+        
+        AF.request(request).responseString { (response) in
+            switch response.result {
+            case .success(let res):
+                print(res)
+                print("POST 성공")
+            case .failure(let error):
+                print("error : \(error.errorDescription!)")
             }
         }
+        
+                
+               
+                // POST 로 보낼 정보
+                
+                
+                // httpBody 에 parameters 추가
+                
+                
+//        try await db.collection("pokemon").document("\(num)").setData(pokemonSpecies)
+        
+        //포켓몬
+//        let forms = try await pokemonSpeciesManager.getVarieties(num: num)
+//        await withThrowingTaskGroup(of: Void.self) { group in
+//            for form in forms{
+//                group.addTask {
+//                    let pokemon = try await self.getPokemon(form: form,num:num)
+////                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
+//                }
+//            }
+//        }
         //포켓몬 진화트리
-        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
-            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
-            let chainDic = try await getPokemonEvolution(num:chainNum)
-            try await db.collection("evolution").document("\(num)").setData(chainDic)
-        }
+//        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
+//            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
+//            let chainDic = try await getPokemonEvolution(num:chainNum)
+////            try await db.collection("evolution").document("\(num)").setData(chainDic)
+//        }
     }
     
     
@@ -57,7 +88,8 @@ class UpdateViewModel:ObservableObject{
         
         
         return try await [
-            "num" : num,
+            "_id" : num,
+//            "color" : color
             "dex_region": dexNumbers.0,
             "dex_num": dexNumbers.1,
             "name": name,

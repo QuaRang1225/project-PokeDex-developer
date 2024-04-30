@@ -15,6 +15,8 @@
 		D62E3BBF2BB2A0730088758D /* EvolTreeNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BBE2BB2A0730088758D /* EvolTreeNodeView.swift */; };
 		D62E3BC12BB2A0A80088758D /* RequestTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BC02BB2A0A80088758D /* RequestTestView.swift */; };
 		D6B27F082BE0DF7900D693F5 /* Pokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B27F072BE0DF7900D693F5 /* Pokemons.swift */; };
+		D6B27F212BE1319500D693F5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D6B27F202BE1319500D693F5 /* Alamofire */; };
+		D6B27F262BE13ADE00D693F5 /* PokeDex-Developer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */; };
 		D6B4C0512BB2A4A4009D0D25 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0502BB2A4A4009D0D25 /* AuthManager.swift */; };
 		D6B4C0582BB2A657009D0D25 /* SignEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0572BB2A657009D0D25 /* SignEmailViewModel.swift */; };
 		D6B4C05A2BB2A741009D0D25 /* SignEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0592BB2A741009D0D25 /* SignEmailView.swift */; };
@@ -67,6 +69,7 @@
 		D62E3BBE2BB2A0730088758D /* EvolTreeNodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolTreeNodeView.swift; sourceTree = "<group>"; };
 		D62E3BC02BB2A0A80088758D /* RequestTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTestView.swift; sourceTree = "<group>"; };
 		D6B27F072BE0DF7900D693F5 /* Pokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemons.swift; sourceTree = "<group>"; };
+		D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PokeDex-Developer-Info.plist"; sourceTree = "<group>"; };
 		D6B4C0502BB2A4A4009D0D25 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		D6B4C0572BB2A657009D0D25 /* SignEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEmailViewModel.swift; sourceTree = "<group>"; };
 		D6B4C0592BB2A741009D0D25 /* SignEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEmailView.swift; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6B27F212BE1319500D693F5 /* Alamofire in Frameworks */,
 				D6B4C0622BB309CD009D0D25 /* PokemonAPI in Frameworks */,
 				D6B4C0652BB309ED009D0D25 /* FirebaseAuth in Frameworks */,
 				D6B4C0672BB309ED009D0D25 /* FirebaseFirestore in Frameworks */,
@@ -195,6 +199,7 @@
 		D6D063882BAB2FD900ADBEB4 /* PokeDex_Developer */ = {
 			isa = PBXGroup;
 			children = (
+				D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */,
 				D6B27F062BE0DF5B00D693F5 /* Model */,
 				D6B4C05B2BB2B05E009D0D25 /* View */,
 				D62E3BC22BB2A46F0088758D /* Auth */,
@@ -291,6 +296,7 @@
 				D6B4C0642BB309ED009D0D25 /* FirebaseAuth */,
 				D6B4C0662BB309ED009D0D25 /* FirebaseFirestore */,
 				D6B4C0682BB309ED009D0D25 /* FirebaseFirestoreSwift */,
+				D6B27F202BE1319500D693F5 /* Alamofire */,
 			);
 			productName = PokeDex_Developer;
 			productReference = D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */;
@@ -367,6 +373,7 @@
 			packageReferences = (
 				D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */,
 				D6B4C0632BB309ED009D0D25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D6B27F1F2BE1319500D693F5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = D6D063872BAB2FD900ADBEB4 /* Products */;
 			projectDirPath = "";
@@ -386,6 +393,7 @@
 			files = (
 				D6D063912BAB2FDB00ADBEB4 /* Preview Assets.xcassets in Resources */,
 				D6D0638E2BAB2FDB00ADBEB4 /* Assets.xcassets in Resources */,
+				D6B27F262BE13ADE00D693F5 /* PokeDex-Developer-Info.plist in Resources */,
 				D6D063B42BAB363800ADBEB4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +529,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -578,6 +588,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -599,6 +611,7 @@
 				DEVELOPMENT_TEAM = N676ZFA7W8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PokeDex_Developer/PokeDex-Developer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포케덱스_개발자앱";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -629,6 +642,7 @@
 				DEVELOPMENT_TEAM = N676ZFA7W8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "PokeDex_Developer/PokeDex-Developer-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "포케덱스_개발자앱";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -766,6 +780,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D6B27F1F2BE1319500D693F5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/QuaRang1225/PokemonAPI.git";
@@ -785,6 +807,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D6B27F202BE1319500D693F5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6B27F1F2BE1319500D693F5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		D6B4C0612BB309CD009D0D25 /* PokemonAPI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */;
