@@ -6,21 +6,18 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
-import Firebase
 import Alamofire
 
 class UpdateViewModel:ObservableObject{
-    //    @Published var pokemon:Pokemons? = nil
+
     
-    private let db = Firestore.firestore()
     private let pokemonSpeciesManager = PokemonSpeciesManager.shared
     private let pokemonEvolutionManager = PokemonEvolutoinManager.shared
     private let pokemonManager = PokemonManager.shared
     
     func updatePokemonInfo(num:Int) async throws{
         
-        //포켓몬 데이터 firestore에 저장
+        //포켓몬 데이터 mongoDB에 저장
         let params = try await self.getPokemonSpecies(num: num)
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon", method: .post, parameters: params, encoding: JSONEncoding.default)
             .validate()
