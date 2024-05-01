@@ -17,6 +17,7 @@
 		D6B27F082BE0DF7900D693F5 /* Pokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B27F072BE0DF7900D693F5 /* Pokemons.swift */; };
 		D6B27F212BE1319500D693F5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D6B27F202BE1319500D693F5 /* Alamofire */; };
 		D6B27F262BE13ADE00D693F5 /* PokeDex-Developer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */; };
+		D6B27F292BE2088000D693F5 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B27F282BE2088000D693F5 /* Response.swift */; };
 		D6B4C0512BB2A4A4009D0D25 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0502BB2A4A4009D0D25 /* AuthManager.swift */; };
 		D6B4C0582BB2A657009D0D25 /* SignEmailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0572BB2A657009D0D25 /* SignEmailViewModel.swift */; };
 		D6B4C05A2BB2A741009D0D25 /* SignEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C0592BB2A741009D0D25 /* SignEmailView.swift */; };
@@ -70,6 +71,8 @@
 		D62E3BC02BB2A0A80088758D /* RequestTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTestView.swift; sourceTree = "<group>"; };
 		D6B27F072BE0DF7900D693F5 /* Pokemons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemons.swift; sourceTree = "<group>"; };
 		D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PokeDex-Developer-Info.plist"; sourceTree = "<group>"; };
+		D6B27F272BE206F700D693F5 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D6B27F282BE2088000D693F5 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		D6B4C0502BB2A4A4009D0D25 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		D6B4C0572BB2A657009D0D25 /* SignEmailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEmailViewModel.swift; sourceTree = "<group>"; };
 		D6B4C0592BB2A741009D0D25 /* SignEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignEmailView.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				D6B27F072BE0DF7900D693F5 /* Pokemons.swift */,
+				D6B27F282BE2088000D693F5 /* Response.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,6 +217,7 @@
 				D6D063BD2BAB39F900ADBEB4 /* Manager */,
 				D6D0638D2BAB2FDB00ADBEB4 /* Assets.xcassets */,
 				D6D0638F2BAB2FDB00ADBEB4 /* Preview Content */,
+				D6B27F272BE206F700D693F5 /* Config.xcconfig */,
 			);
 			path = PokeDex_Developer;
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				D6B27F082BE0DF7900D693F5 /* Pokemons.swift in Sources */,
 				D62E3BBA2BB296620088758D /* PokemonEvolutionInfo.swift in Sources */,
 				D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */,
+				D6B27F292BE2088000D693F5 /* Response.swift in Sources */,
 				D6B4C05A2BB2A741009D0D25 /* SignEmailView.swift in Sources */,
 				D62E3BB12BAE97C60088758D /* TypeFilter.swift in Sources */,
 			);
@@ -533,6 +539,7 @@
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				LOCAL_URL = "220.123.52.178:3000";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -592,6 +599,7 @@
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				LOCAL_URL = "220.123.52.178:3000";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
