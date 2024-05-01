@@ -9,15 +9,13 @@ import Foundation
 import Alamofire
 
 class UpdateViewModel:ObservableObject{
-
+    
     
     private let pokemonSpeciesManager = PokemonSpeciesManager.shared
     private let pokemonEvolutionManager = PokemonEvolutoinManager.shared
     private let pokemonManager = PokemonManager.shared
     
-    func updatePokemonInfo(num:Int) async throws{
-        
-        //포켓몬 데이터 mongoDB에 저장
+    func storePokemon(num:Int)async throws{
         let params = try await self.getPokemonSpecies(num: num)
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon", method: .post, parameters: params, encoding: JSONEncoding.default)
             .validate()
@@ -29,29 +27,40 @@ class UpdateViewModel:ObservableObject{
                     print("Error: \(error)")
                 }
             }
+    }
+    func deletePokemon(num:Int)async throws{
+        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon/\(num)", method: .delete)
+            .validate()
+            .response{ response in
+                switch response.result {
+                case .success(let value):
+                    print("Response: \(String(describing: value))")
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
+    }
+    func updatePokemonInfo(num:Int) async throws{
         
-        // POST 로 보낼 정보
-        // httpBody 에 parameters 추가
+        //포켓몬 데이터 mongoDB에 저장
+        try await storePokemon(num: num)
         
-        
-        //        try await db.collection("pokemon").document("\(num)").setData(pokemonSpecies)
-        
-        //포켓몬
-        //        let forms = try await pokemonSpeciesManager.getVarieties(num: num)
-        //        await withThrowingTaskGroup(of: Void.self) { group in
-        //            for form in forms{
-        //                group.addTask {
-        //                    let pokemon = try await self.getPokemon(form: form,num:num)
-        ////                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
-        //                }
-        //            }
-        //        }
-        //포켓몬 진화트리
-        //        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
-        //            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
-        //            let chainDic = try await getPokemonEvolution(num:chainNum)
-        ////            try await db.collection("evolution").document("\(num)").setData(chainDic)
-        //        }
+        //        포켓몬
+        let forms = try await pokemonSpeciesManager.getVarieties(num: num)
+        await withThrowingTaskGroup(of: Void.self) { group in
+            for form in forms{
+                group.addTask {
+                    let pokemon = try await self.getPokemon(form: form,num:num)
+                    //                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
+                }
+            }
+        }
+        //        포켓몬 진화트리
+        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
+            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
+            let chainDic = try await getPokemonEvolution(num:chainNum)
+            //            try await db.collection("evolution").document("\(num)").setData(chainDic)
+        }
     }
     
     

@@ -14,6 +14,7 @@
 		D62E3BBC2BB296E90088758D /* PokemonEvolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BBB2BB296E90088758D /* PokemonEvolution.swift */; };
 		D62E3BBF2BB2A0730088758D /* EvolTreeNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BBE2BB2A0730088758D /* EvolTreeNodeView.swift */; };
 		D62E3BC12BB2A0A80088758D /* RequestTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E3BC02BB2A0A80088758D /* RequestTestView.swift */; };
+		D6681FFD2BE2504C0045DE11 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D6681FFC2BE2504C0045DE11 /* Kingfisher */; };
 		D6B27F082BE0DF7900D693F5 /* Pokemons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B27F072BE0DF7900D693F5 /* Pokemons.swift */; };
 		D6B27F212BE1319500D693F5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D6B27F202BE1319500D693F5 /* Alamofire */; };
 		D6B27F262BE13ADE00D693F5 /* PokeDex-Developer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */; };
@@ -98,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6681FFD2BE2504C0045DE11 /* Kingfisher in Frameworks */,
 				D6B27F212BE1319500D693F5 /* Alamofire in Frameworks */,
 				D6B4C0622BB309CD009D0D25 /* PokemonAPI in Frameworks */,
 			);
@@ -290,6 +292,7 @@
 			packageProductDependencies = (
 				D6B4C0612BB309CD009D0D25 /* PokemonAPI */,
 				D6B27F202BE1319500D693F5 /* Alamofire */,
+				D6681FFC2BE2504C0045DE11 /* Kingfisher */,
 			);
 			productName = PokeDex_Developer;
 			productReference = D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */;
@@ -366,6 +369,7 @@
 			packageReferences = (
 				D6B4C0602BB309CC009D0D25 /* XCRemoteSwiftPackageReference "PokemonAPI" */,
 				D6B27F1F2BE1319500D693F5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D6681FFB2BE2504C0045DE11 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D6D063872BAB2FD900ADBEB4 /* Products */;
 			projectDirPath = "";
@@ -774,6 +778,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D6681FFB2BE2504C0045DE11 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 		D6B27F1F2BE1319500D693F5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -793,6 +805,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D6681FFC2BE2504C0045DE11 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6681FFB2BE2504C0045DE11 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		D6B27F202BE1319500D693F5 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D6B27F1F2BE1319500D693F5 /* XCRemoteSwiftPackageReference "Alamofire" */;
