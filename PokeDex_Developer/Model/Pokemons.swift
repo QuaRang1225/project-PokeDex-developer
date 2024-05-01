@@ -7,18 +7,6 @@
 
 import Foundation
 
-struct Base :Codable{
-    var image : String
-    var types : [String]
-}
-struct Dex :Codable{
-    var num : Int
-    var types : [String]
-}
-struct TextEntries:Codable{
-    var name:[String]
-    var version : [String]
-}
 
 struct Pokemons:Codable{
     var id : Int
@@ -34,7 +22,7 @@ struct Pokemons:Codable{
     var hatchCounter : Int
     var name : String
     var textEntries : TextEntries
-    var varieites : [String]
+    var varieties : [String]
     
     enum CodingKeys: String, CodingKey {
         case id = "_id"
@@ -50,7 +38,7 @@ struct Pokemons:Codable{
         case hatchCounter = "hatch_counter"
         case name = "name"
         case textEntries = "text_entries"
-        case varieites = "varieties"
+        case varieties = "varieties"
     }
 }
 
