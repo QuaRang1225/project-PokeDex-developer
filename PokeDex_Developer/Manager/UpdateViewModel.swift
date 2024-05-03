@@ -29,6 +29,19 @@ class UpdateViewModel:ObservableObject{
             }
         return params["varieties"] as! [String]
     }
+    func storePokemonVarieties(form:String)async throws{
+        let params = try await self.getPokemon(form: form)
+        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/varieties", method: .post, parameters: params, encoding: JSONEncoding.default)
+            .validate()
+            .response{ response in
+                switch response.result {
+                case .success(let value):
+                    print("Response: \(String(describing: value))")
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
+    }
     func deletePokemon(num:Int)async throws{
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon/\(num)", method: .delete)
             .validate()
@@ -49,7 +62,7 @@ class UpdateViewModel:ObservableObject{
         await withThrowingTaskGroup(of: Void.self) { group in
             for form in forms{
                 group.addTask {
-                    let pokemon = try await self.getPokemon(form: form,num:num)
+                    try await self.storePokemonVarieties(form: form)
                     //                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
                 }
             }
