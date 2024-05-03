@@ -20,6 +20,7 @@ struct PokemonInfoView: View {
             title(text: "포켓몬 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/poke-ball.png?raw=true")
             storePokemons
             storePokemon
+            title(text: "폼 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/sablenite.png?raw=true")
             storePokemonForms
         }
         .foregroundStyle(.primary)
@@ -102,7 +103,6 @@ extension PokemonInfoView{
         VStack(alignment: .leading){
             HStack(alignment: .bottom){
                 TextField("폼이름 (영문명) ",text: $name)
-                    .frame(width: 100)
                     .font(.body)
                 Spacer()
                 updateButton(type: "저장"){
