@@ -31,7 +31,7 @@ class UpdateViewModel:ObservableObject{
     }
     func storePokemonVarieties(form:String)async throws{
         let params = try await self.getPokemon(form: form)
-        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/varieties", method: .post, parameters: params, encoding: JSONEncoding.default)
+        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/variety", method: .post, parameters: params, encoding: JSONEncoding.default)
             .validate()
             .response{ response in
                 switch response.result {
@@ -63,16 +63,15 @@ class UpdateViewModel:ObservableObject{
             for form in forms{
                 group.addTask {
                     try await self.storePokemonVarieties(form: form)
-                    //                    try await self.db.collection("pokemon").document("\(num)").collection("varieites").document("\(form)").setData(pokemon)
                 }
             }
         }
         //        포켓몬 진화트리
-        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
-            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
-            let chainDic = try await getPokemonEvolution(num:chainNum)
-            //            try await db.collection("evolution").document("\(num)").setData(chainDic)
-        }
+//        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
+//            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
+//            let chainDic = try await getPokemonEvolution(num:chainNum)
+//            //            try await db.collection("evolution").document("\(num)").setData(chainDic)
+//        }
     }
     
     
@@ -119,9 +118,8 @@ class UpdateViewModel:ObservableObject{
         
         
     }
-    func getPokemon(form:String,num:Int)async throws -> [String:Any]{
+    func getPokemon(form:String)async throws -> Parameters{
         
-        //        async let formsName = pokemonManager.getFormsName(name: form)
         async let formsImages = pokemonManager.getFormsImage(name: form, getOnlyForms: false)
         async let types = pokemonManager.getTypes(name: form)
         async let height = pokemonManager.getHeight(name: form)
@@ -130,19 +128,21 @@ class UpdateViewModel:ObservableObject{
         async let stats = pokemonManager.getStats(name: form)
         
         return try await[
-            //            "forms_name" : formsName,
-            "forms_images" : formsImages,
+            "_id" : form,
+            "abilites" : [
+                "name" : abilites.0,
+                "text" : abilites.1,
+                "is_hidden" : abilites.2,
+            ],
+            "form" : [
+                "images" : formsImages[0],
+                "name" : form
+            ],
             "types" : types,
             "height" : height,
             "weight" : weight,
-            "abilites_name" : abilites.0,
-            "abilites_text" : abilites.1,
-            "abilites_isHidden" : abilites.2,
-            "stats_name" : stats.0,
-            "stats" : stats.1
-            
-            
-        ]
+            "stats" : stats
+        ] as Parameters
     }
     func getPokemonEvolution(num:Int) async throws -> [String:Any]{
         
