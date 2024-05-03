@@ -15,32 +15,21 @@ class UpdateViewModel:ObservableObject{
     private let pokemonEvolutionManager = PokemonEvolutoinManager.shared
     private let pokemonManager = PokemonManager.shared
     
-    func storePokemon(num:Int)async throws -> [String]{
+    
+    
+    func storePokemon(num:Int)async throws -> (form : [String],chian: Int){
         let params = try await self.getPokemonSpecies(num: num)
-        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon", method: .post, parameters: params, encoding: JSONEncoding.default)
-            .validate()
-            .response{ response in
-                switch response.result {
-                case .success(let value):
-                    print("Response: \(String(describing: value))")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-        return params["varieties"] as! [String]
+       request(params: params, endPoint: "pokemon")
+        return (params["varieties"] as! [String],params["evolution_tree"] as! Int)
     }
     func storePokemonVarieties(form:String)async throws{
         let params = try await self.getPokemon(form: form)
-        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/variety", method: .post, parameters: params, encoding: JSONEncoding.default)
-            .validate()
-            .response{ response in
-                switch response.result {
-                case .success(let value):
-                    print("Response: \(String(describing: value))")
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
+        request(params: params, endPoint: "variety")
+    }
+    func storePokemonEvolutionTree(num:Int)async throws{
+        let params = try await self.getPokemonEvolution(num: num)
+        print(params)
+        request(params: params, endPoint: "tree")
     }
     func deletePokemon(num:Int)async throws{
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon/\(num)", method: .delete)
@@ -172,6 +161,20 @@ class UpdateViewModel:ObservableObject{
         
         return rootTree
         
+    }
+    
+    
+    private func request(params:Parameters,endPoint:String){
+        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: .post, parameters: params, encoding: JSONEncoding.default)
+            .validate()
+            .response{ response in
+                switch response.result {
+                case .success(let value):
+                    print("Response: \(String(describing: value))")
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
     }
 }
 
