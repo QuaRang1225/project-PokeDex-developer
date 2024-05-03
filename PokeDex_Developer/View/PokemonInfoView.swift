@@ -90,7 +90,7 @@ extension PokemonInfoView{
                 updateButton(type: "저장"){
                     Task{
                         guard let num = Int(num) else {return}
-                        try await vm.storePokemon(num: num)
+                        let _ = try await vm.storePokemon(num: num)
                     }
                 }
             }

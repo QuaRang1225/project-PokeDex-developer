@@ -15,7 +15,7 @@ class UpdateViewModel:ObservableObject{
     private let pokemonEvolutionManager = PokemonEvolutoinManager.shared
     private let pokemonManager = PokemonManager.shared
     
-    func storePokemon(num:Int)async throws{
+    func storePokemon(num:Int)async throws -> [String]{
         let params = try await self.getPokemonSpecies(num: num)
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon", method: .post, parameters: params, encoding: JSONEncoding.default)
             .validate()
@@ -27,6 +27,7 @@ class UpdateViewModel:ObservableObject{
                     print("Error: \(error)")
                 }
             }
+        return params["varieties"] as! [String]
     }
     func deletePokemon(num:Int)async throws{
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/pokemon/\(num)", method: .delete)
@@ -43,10 +44,8 @@ class UpdateViewModel:ObservableObject{
     func updatePokemonInfo(num:Int) async throws{
         
         //포켓몬 데이터 mongoDB에 저장
-        try await storePokemon(num: num)
+        let forms =  try await storePokemon(num: num)
         
-        //        포켓몬
-        let forms = try await pokemonSpeciesManager.getVarieties(num: num)
         await withThrowingTaskGroup(of: Void.self) { group in
             for form in forms{
                 group.addTask {
