@@ -13,12 +13,14 @@ struct PokemonInfoView: View {
     @State var firstNum = ""
     @State var lastNum = ""
     @State var num = ""
+    @State var name = ""
     
     var body: some View {
         VStack{
             title(text: "포켓몬 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/poke-ball.png?raw=true")
             storePokemons
             storePokemon
+            storePokemonForms
         }
         .foregroundStyle(.primary)
         .padding(.horizontal)
@@ -96,5 +98,19 @@ extension PokemonInfoView{
             }
         }
     }
-    
+    var storePokemonForms:some View{
+        VStack(alignment: .leading){
+            HStack(alignment: .bottom){
+                TextField("폼이름 (영문명) ",text: $name)
+                    .frame(width: 100)
+                    .font(.body)
+                Spacer()
+                updateButton(type: "저장"){
+                    Task{
+                        try await vm.storePokemonVarieties(form: name)
+                    }
+                }
+            }
+        }
+    }
 }
