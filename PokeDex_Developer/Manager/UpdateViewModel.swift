@@ -78,11 +78,9 @@ class UpdateViewModel:ObservableObject{
         async let formsSwitchable = pokemonSpeciesManager.getFormsSwitchable(num: num)
         async let evolutionChainUrl = pokemonEvolutionManager.getEvolutionChainUrl(num: num)
         async let color = pokemonSpeciesManager.getColor(num: num)
-        async let formName = pokemonSpeciesManager.getEnglishName(num: num)
-        async let forms = pokemonManager.getFormsName(num: num)
-        let types = try await pokemonManager.getTypes(name: formName)
+        async let varieites =  pokemonSpeciesManager.getVarieties(num: num)
+        async let types = pokemonManager.getTypes(num: num)
         let image =  "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/\(num).png"
-        
         
         return try await [
             "_id" : num,
@@ -104,7 +102,7 @@ class UpdateViewModel:ObservableObject{
                 "text": textEntries.text,
                 "version" : textEntries.version
             ],
-            "varieites" : forms
+            "varieties" : varieites
         ] as Parameters
         
         
