@@ -93,9 +93,9 @@ class PokemonManager:ObservableObject,Pokemon{
         guard let height = try await PokemonAPI().pokemonService.fetchPokemon(name).height else { return 0 }
         return Double(height) / 10
     }
-    func getStats(name:String) async throws -> ([String],[Int]){
-        guard let stats = try await PokemonAPI().pokemonService.fetchPokemon(name).stats else {return ([],[])}
-        return (stats.compactMap{StatFilter(rawValue: $0.stat?.name ?? "")?.name},stats.compactMap{$0.baseStat})
+    func getStats(name:String) async throws -> [Int]{
+        guard let stats = try await PokemonAPI().pokemonService.fetchPokemon(name).stats else {return []}
+        return stats.compactMap{$0.baseStat}
     }
     
     func getTypes(name:String) async throws -> [String]{
