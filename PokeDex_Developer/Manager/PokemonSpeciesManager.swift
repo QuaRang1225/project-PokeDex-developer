@@ -104,8 +104,4 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         guard  let color = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).color?.name else {return ""}
         return color
     }
-    func getEnglishName(num:Int) async throws -> String{
-        guard  let name = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).name else {return ""}
-        return name
-    }
 }

@@ -69,8 +69,8 @@ class PokemonManager:ObservableObject,Pokemon{
         return formInfo
     }
     
-    func getFormsName(num:Int) async throws -> [String]{
-        let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(num)
+    func getFormsName(name:String) async throws -> [String]{
+        let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(name)
         
         let forms = pokemon.forms?.compactMap{$0.name} ?? []        //폼 이름 수집
         
@@ -102,7 +102,10 @@ class PokemonManager:ObservableObject,Pokemon{
         guard let types = try await PokemonAPI().pokemonService.fetchPokemon(name).types else {return ([])}
         return types.compactMap{TypeFilter(rawValue: $0.type?.name ?? "")?.name}
     }
-    
+    func getTypes(num:Int) async throws -> [String]{
+        guard let types = try await PokemonAPI().pokemonService.fetchPokemon(num).types else {return ([])}
+        return types.compactMap{TypeFilter(rawValue: $0.type?.name ?? "")?.name}
+    }
     func getWeight(name:String) async throws -> Double{
         guard let weight = try await PokemonAPI().pokemonService.fetchPokemon(name).weight else { return 0 }
         return Double(weight) / 10

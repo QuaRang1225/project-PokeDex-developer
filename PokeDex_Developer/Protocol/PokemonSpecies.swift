@@ -16,12 +16,11 @@ protocol PokemonSpecies{
     func getHatchCounter(num:Int) async throws -> Int                           //부화 카운트
     func getName(num:Int) async throws -> String                                //이름 - 번호로 검색
     func getName(name:String) async throws -> String                            //이름 - 이름으로 검색
-    func getPokdexNumbers(num:Int) async throws -> [[String:Any]]                          //도감 번호 및 도감 지역
+    func getPokdexNumbers(num:Int) async throws -> [[String:Any]]               //도감 번호 및 도감 지역
     func getVarieties(num:Int) async throws -> [String]                         //리전폼 - 번호로 검색
     func getVarieties(name:String) async throws -> [String]                     //리전폼 - 이름으열 검색
     func getCaptureRate(num:Int)async throws -> Int                             //포획률
     func getEvolutionFromSpecies(num:Int) async throws -> Bool                  //진화전 포켓몬이 있는지 확인
     func getColor(num:Int) async throws -> String                               //포켓몬 색상
-    func getEnglishName(num:Int) async throws -> String                         //포켓몬 영문 이름
     
 }
