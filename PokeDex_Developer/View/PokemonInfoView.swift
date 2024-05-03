@@ -82,9 +82,8 @@ extension PokemonInfoView{
     }
     var storePokemon:some View{
         VStack(alignment: .leading){
-            
             HStack(alignment: .bottom){
-                TextField("번호",text: $firstNum)
+                TextField("번호",text: $num)
                     .frame(width: 60)
                     .font(.body)
                 Spacer()
