@@ -46,21 +46,18 @@ class UpdateViewModel:ObservableObject{
     func updatePokemonInfo(num:Int) async throws{
         
         //포켓몬 데이터 mongoDB에 저장
-        let forms =  try await storePokemon(num: num)
+        let pokemonData =  try await storePokemon(num: num)
         
         await withThrowingTaskGroup(of: Void.self) { group in
-            for form in forms{
+            for form in pokemonData.form{
                 group.addTask {
                     try await self.storePokemonVarieties(form: form)
                 }
             }
         }
-        //        포켓몬 진화트리
-//        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
-//            let chainNum = try await pokemonEvolutionManager.getEvolutionChainUrl(num: num)
-//            let chainDic = try await getPokemonEvolution(num:chainNum)
-//            //            try await db.collection("evolution").document("\(num)").setData(chainDic)
-//        }
+        if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
+            try await storePokemonEvolutionTree(num: pokemonData.chian)
+        }
     }
     
     
@@ -133,7 +130,7 @@ class UpdateViewModel:ObservableObject{
             "stats" : stats
         ] as Parameters
     }
-    func getPokemonEvolution(num:Int) async throws -> [String:Any]{
+    func getPokemonEvolution(num:Int) async throws -> Parameters{
         
         let chain = try await pokemonEvolutionManager.getEvolutionChain(num: num)
         
@@ -141,25 +138,26 @@ class UpdateViewModel:ObservableObject{
         var middleTree:[[String:Any]] = []
         var lastNode:[[String:Any]] = []
         
+        rootTree["_id"] = num
         rootTree["name"] = chain.name
-        rootTree["images"] = chain.image
+        rootTree["image"] = chain.image
         for child in chain.children{
             var middle:[String:Any] = [:]
             middle["name"] = child.name
-            middle["images"] = child.image
+            middle["image"] = child.image
             for ch in child.children{
                 var last:[String:Any] = [:]
                 last["name"] = ch.name
-                last["images"] = ch.image
+                last["image"] = ch.image
+                last["evol_to"] = []
                 lastNode.append(last)
-                
             }
             middle["evol_to"] = lastNode
             middleTree.append(middle)
         }
         rootTree["evol_to"] = middleTree
         
-        return rootTree
+        return rootTree as Parameters
         
     }
     

@@ -14,6 +14,7 @@ struct PokemonInfoView: View {
     @State var lastNum = ""
     @State var num = ""
     @State var name = ""
+    @State var code = ""
     
     var body: some View {
         VStack{
@@ -22,6 +23,8 @@ struct PokemonInfoView: View {
             storePokemon
             title(text: "폼 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/sablenite.png?raw=true")
             storePokemonForms
+            title(text: "진화 트리 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/gen5/dawn-stone.png?raw=true")
+            storePokemonTree
         }
         .foregroundStyle(.primary)
         .padding(.horizontal)
@@ -108,6 +111,21 @@ extension PokemonInfoView{
                 updateButton(type: "저장"){
                     Task{
                         try await vm.storePokemonVarieties(form: name)
+                    }
+                }
+            }
+        }
+    }
+    var storePokemonTree:some View{
+        VStack(alignment: .leading){
+            HStack(alignment: .bottom){
+                TextField("진화 트리 코드 (숫자)",text: $code)
+                    .font(.body)
+                Spacer()
+                updateButton(type: "저장"){
+                    Task{
+                        guard let code = Int(code) else {return}
+                        try await vm.storePokemonEvolutionTree(num:code)
                     }
                 }
             }

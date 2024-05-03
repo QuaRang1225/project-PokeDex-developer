@@ -12,7 +12,7 @@ protocol Pokemon{
     func getFormsImage(name:String,getOnlyForms:Bool) async throws -> [String]          //폼 이미지
     func getFormsName(name:String) async throws -> [String]                             //폼 이름
     func getHeight(name:String) async throws -> Double                                  //키
-    func getStats(name:String) async throws -> [Int]                                    //스탯
+    func getStats(name:String) async throws -> [Int]                         //스탯
     func getTypes(name:String) async throws -> [String]                                 //타입 - 이름으로 요청
     func getTypes(num:Int) async throws -> [String]                                     //타입 - 번호로 요청
     func getWeight(name:String) async throws -> Double                                  //무게
