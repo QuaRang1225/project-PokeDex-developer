@@ -52,6 +52,7 @@ struct PokemonInfoView: View {
             if pokeonInfo{
                 PokemonView().environmentObject(vm)
             }else if varietieInfo{
+                VarietiesView().environmentObject(vm)
             }else{
             }
         }
