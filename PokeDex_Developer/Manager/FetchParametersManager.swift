@@ -60,6 +60,7 @@ class FetchParametersManager{
     func getPokemon(form:String)async throws -> Parameters{
         
         async let formsImages = pokemonManager.getFormsImage(name: form, getOnlyForms: false)
+        async let formsName = pokemonManager.getFormsName(name: form)
         async let types = pokemonManager.getTypes(name: form)
         async let height = pokemonManager.getHeight(name: form)
         async let weight = pokemonManager.getWeight(name: form)
@@ -75,7 +76,7 @@ class FetchParametersManager{
             ],
             "form" : [
                 "images" : formsImages[0],
-                "name" : form
+                "name" : formsName[0]
             ],
             "types" : types,
             "height" : height,

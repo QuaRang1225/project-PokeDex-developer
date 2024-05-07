@@ -44,8 +44,9 @@ class UpdateViewModel:ObservableObject{
         }
     }
     func fetchPokemonVarieties(form:String)async throws{
-        let params = try await FetchParametersManager.shared.getPokemon(form: form)
-        request(params: params,method: .post, endPoint: "variety")
+        requestDecodable(params: nil, method: .get, endPoint: "variety/\(form)",encoding: URLEncoding.queryString){ [weak self] (data : VarietiesRespons) in
+            self?.varieties = data.data
+        }
     }
     func fetchPokemonEvolutionTree(num:Int)async throws{
         let params = try await FetchParametersManager.shared.getPokemonEvolution(num: num)
@@ -55,6 +56,9 @@ class UpdateViewModel:ObservableObject{
     //DB수정 =============================
     func updatePokemon(num:Int,pokemon:Pokemons)async throws{
         request(params: pokemonParameters(pokemon: pokemon),method: .patch, endPoint: "pokemon/\(num)")
+    }
+    func updatePokemonForm(name:String,varieties:Varieties)async throws{
+        request(params: formParameters(form: varieties),method: .patch, endPoint: "variety/\(name)")
     }
     
     //DB삭제 =============================
