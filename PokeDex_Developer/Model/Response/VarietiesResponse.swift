@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct VarietiesRespons:Codable{
+    let status: Int
+    let data: Pokemons
+    let message : String
+}

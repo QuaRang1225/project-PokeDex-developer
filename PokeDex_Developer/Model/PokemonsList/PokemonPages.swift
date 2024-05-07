@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+struct PokemonPages: Codable {
+    let totalCount, totalPages, currentPage, perPage: Int
+    let pokemon: [PokemonsList]
+
+    enum CodingKeys: String, CodingKey {
+        case totalCount = "total_count"
+        case totalPages = "total_pages"
+        case currentPage = "current_page"
+        case perPage = "per_page"
+        case pokemon
+    }
+}

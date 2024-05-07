@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct PokemonListResponse: Codable {
+    let status: Int
+    let data: PokemonPages
+    let message : String
+}

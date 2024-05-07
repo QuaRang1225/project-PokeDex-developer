@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct PokemonsList:Codable{
+    let id: Int
+    let color, name: String
+    let base: Base
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case color, name, base
+    }
+}
