@@ -9,6 +9,6 @@ import Foundation
 
 struct VarietiesRespons:Codable{
     let status: Int
-    let data: Pokemons
+    let data: Varieties
     let message : String
 }

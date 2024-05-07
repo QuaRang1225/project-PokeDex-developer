@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Form: Codable {
+    var images: String
+    var name: String
+}

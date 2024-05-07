@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+
+struct Varieties: Codable {
+    var id: String
+    var abilites: Abilites
+    var form: Form
+    var height: Double
+    var stats: [Int]
+    var types: [String]
+    var weight: Double
+
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case abilites, form, height, stats, types, weight
+    }
+}
+

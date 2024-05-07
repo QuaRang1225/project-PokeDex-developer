@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+// MARK: - Abilites
+struct Abilites: Codable {
+    var isHidden: [Bool]
+    var name, text: [String]
+
+    enum CodingKeys: String, CodingKey {
+        case isHidden = "is_hidden"
+        case name, text
+    }
+}
