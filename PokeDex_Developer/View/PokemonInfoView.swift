@@ -13,193 +13,50 @@ struct PokemonInfoView: View {
     @State var firstNum = ""
     @State var lastNum = ""
     @State var storeNum = ""
-    @State var fetchNum = ""
     @State var name = ""
     @State var code = ""
+    @State var pokeonInfo = false
+    @State var varietieInfo = false
+    @State var treeInfo = false
     
     var body: some View {
         VStack{
-            title(text: "포켓몬 DB 저장", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/master-ball.png?raw=true")
+            title(text: "포켓몬 DB 저장", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/master-ball.png?raw=true", show: nil)
             storePokemons
-            title(text: "포켓몬 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/poke-ball.png?raw=true")
+            title(text: "포켓몬 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/poke-ball.png?raw=true", show: $pokeonInfo)
             storePokemon
-            Divider()
-            HStack{
-                TextField("도감번호", text: $fetchNum)
-                updateButton(type: "불러오기") {
-                    Task{
-                        guard let num = Int(fetchNum) else {return}
-                        try await vm.fetchPokemon(num:num)
-                    }
-                }
-            }
-            HStack(alignment: .bottom){
-                KFImage(URL(string: vm.pokemon?.base.image ?? ""))
-                    .placeholder{
-                        Color.gray.opacity(0.2)
-                    }
-                    .resizable()
-                    .frame(width: 150,height: 150)
-                    .cornerRadius(10)
-                Spacer()
-                VStack(alignment:.leading, spacing: 10){
-                    HStack{
-                        Text("ID : ").bold()
-                        TextField("", text: Binding(
-                            get: { String(vm.pokemon?.id ?? 0) },
-                            set: {
-                                if let value = Int($0) { vm.pokemon?.id = value }
-                            }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                    }
-                    HStack{
-                        Text("색상 : ").bold()
-                        TextField("", text: Binding(
-                            get: { vm.pokemon?.color ?? "" },
-                            set: { vm.pokemon?.color = $0 }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                    }
-                    HStack{
-                        Text("이름 : ").bold()
-                        TextField("", text: Binding(
-                            get: { vm.pokemon?.name ?? "" },
-                            set: { vm.pokemon?.name = $0 }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                    }
-                    HStack{
-                        Text("분류 : ").bold()
-                        TextField("", text: Binding(
-                            get: { vm.pokemon?.genra ?? "" },
-                            set: { vm.pokemon?.genra = $0 }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                    }
-                    HStack{
-                        Text("포획률 : ").bold()
-                        TextField("", text: Binding(
-                            get: { String(vm.pokemon?.captureRate ?? 0) },
-                            set: {
-                                if let value = Int($0) { vm.pokemon?.captureRate = value }
-                            }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                    }
-                    
-                    
-                }
-            }
-            VStack(alignment: .leading,spacing: 20){
-                HStack{
-                    Text("리전폼 & 다른모습 : ").bold()
-                    TextField("", text: Binding(
-                        get: { String(vm.pokemon?.formsSwitchable ?? false) },
-                        set: {
-                            if let value = Bool($0) { vm.pokemon?.formsSwitchable = value }
-                        }
-                    )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                }
-                HStack{
-                    Text("진화트리ID : ").bold()
-                    TextField("", text: Binding(
-                        get: { String(vm.pokemon?.evolutionTree ?? 0) },
-                        set: {
-                            if let value = Int($0) { vm.pokemon?.evolutionTree = value }
-                        }
-                    )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                }
-                HStack{
-                    Text("성비 : ").bold()
-                    TextField("", text: Binding(
-                        get: { String(vm.pokemon?.genderRate ?? 0) },
-                        set: {
-                            if let value = Int($0) { vm.pokemon?.genderRate = value }
-                        }
-                    )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                }
-                HStack{
-                    Text("부화 걸음수 : ").bold()
-                    TextField("", text: Binding(
-                        get: { String(vm.pokemon?.hatchCounter ?? 0) },
-                        set: {
-                            if let value = Int($0) { vm.pokemon?.hatchCounter = value }
-                        }
-                    )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                }
-                
-                VStack{
-                    Text("타입").bold()
-                    HStack{
-                        ForEach((vm.pokemon?.base.types ?? []).indices,id: \.self){ index in
-                            TextField("", text: Binding(
-                                get: { vm.pokemon?.base.types[index] ?? "" },
-                                set: { vm.pokemon?.base.types[index] = $0 }
-                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                        }
-                    }
-                }
-                VStack{
-                    Text("도감번호").bold()
-                    
-                    ForEach((vm.pokemon?.dex ?? []).indices,id: \.self){ index in
-                        HStack{
-                            TextField("", text: Binding(
-                                get: { vm.pokemon?.dex[index].region ?? "" },
-                                set: { vm.pokemon?.dex[index].region = $0 }
-                            ))
-                            .overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                            TextField("", text: Binding(
-                                get: { String(vm.pokemon?.dex[index].num ?? 0) },
-                                set: {  if let value = Int($0) { vm.pokemon?.dex[index].num = value } }
-                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                        }
-                    }
-                }
-                VStack{
-                    Text("알그룹").bold()
-                    HStack{
-                        ForEach((vm.pokemon?.eggGroup ?? []).indices,id: \.self){ index in
-                            TextField("", text: Binding(
-                                get: { vm.pokemon?.eggGroup[index] ?? "" },
-                                set: { vm.pokemon?.eggGroup[index] = $0 }
-                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                        }
-                    }
-                }
-                VStack{
-                    Text("도감 설명").bold()
-                    
-                    ForEach((vm.pokemon?.textEntries.version ?? []).indices,id: \.self){ index in
-                        HStack{
-                            TextField("", text: Binding(
-                                get: { vm.pokemon?.textEntries.version[index] ?? "" },
-                                set: { vm.pokemon?.textEntries.version[index] = $0 }
-                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                            TextField("", text: Binding(
-                                get: { vm.pokemon?.textEntries.text[index] ?? "" },
-                                set: { vm.pokemon?.textEntries.text[index] = $0 }
-                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                        }
-                    }
-                }
-                VStack{
-                    Text("리전폼").bold()
-                    HStack{
-                        ForEach((vm.pokemon?.varieties ?? []).indices,id: \.self){ index in
-                            TextField("", text: Binding(
-                                get: { vm.pokemon?.varieties[index] ?? "" },
-                                set: { vm.pokemon?.varieties[index] = $0 }
-                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                        }
-                    }
-                }
-            }
-            
-            title(text: "폼 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/sablenite.png?raw=true")
+            title(text: "폼 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/sablenite.png?raw=true", show: $varietieInfo)
             storePokemonForms
-            title(text: "진화 트리 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/gen5/dawn-stone.png?raw=true")
+            title(text: "진화 트리 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/gen5/dawn-stone.png?raw=true", show: $treeInfo)
             storePokemonTree
         }
         .foregroundStyle(.primary)
         .padding(.horizontal)
+        .sheet(isPresented:Binding(get: {
+            if pokeonInfo{
+                return pokeonInfo
+            }else if varietieInfo{
+                return varietieInfo
+            }else{
+                return treeInfo
+            }
+        }, set: {
+            if pokeonInfo{
+                pokeonInfo = $0
+            }else if varietieInfo{
+                varietieInfo = $0
+            }else{
+                treeInfo = $0
+            }
+        })){
+            if pokeonInfo{
+                PokemonView().environmentObject(vm)
+            }else if varietieInfo{
+            }else{
+            }
+        }
     }
+        
 }
 
 #Preview {
@@ -209,7 +66,7 @@ struct PokemonInfoView: View {
 }
 
 extension PokemonInfoView{
-    func title(text:String,imageLink:String) -> some View{
+    func title(text:String,imageLink:String,show:Binding<Bool>?) -> some View{
         HStack{
             KFImage(URL(string: imageLink))
                 .resizable()
@@ -217,34 +74,35 @@ extension PokemonInfoView{
             Text(text)
                 .bold()
             Spacer()
+            if let show{
+                Button {
+                    show.wrappedValue = true
+                } label: {
+                    Image(systemName: "chevron.up")
+                }
+            }
         }
         .font(.title2)
         .padding(.top)
     }
-    func updateButton(type:String,action:@escaping()->()) -> some View{
-        Button(action: action) {
-            Text(type)
-                .padding(5)
-                .padding(.horizontal)
-                .background(.pink)
-                .cornerRadius(10)
-                .foregroundColor(.white)
-                .bold()
-        }
-    }
+    
     var storePokemons: some View{
         VStack(alignment: .leading){
             HStack(alignment: .bottom){
-                Group{
                     TextField("시작번호",text: $firstNum)
+                        .frame(width: 80)
+                        .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                        .padding(.horizontal,10)
                     Text("~")
                     TextField("끝번호",text: $lastNum)
-                }
-                .frame(width: 60)
+                        .frame(width: 80)
+                        .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                        .padding(.horizontal,10)
+                
                 .font(.body)
                 Spacer()
                 
-                updateButton(type: "저장"){
+                UpdateButtonView(type: "저장"){
                     Task{
                         await withThrowingTaskGroup(of: Void.self) { group in
                             guard let first = Int(firstNum),let last = Int(lastNum) else { return }
@@ -263,10 +121,11 @@ extension PokemonInfoView{
         VStack(alignment: .leading){
             HStack(alignment: .bottom){
                 TextField("번호",text: $storeNum)
-                    .frame(width: 60)
                     .font(.body)
+                    .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                    .padding(.horizontal,10)
                 Spacer()
-                updateButton(type: "저장"){
+                UpdateButtonView(type: "저장"){
                     Task{
                         guard let num = Int(storeNum) else {return}
                         let _ = try await vm.storePokemon(num: num)
@@ -280,8 +139,10 @@ extension PokemonInfoView{
             HStack(alignment: .bottom){
                 TextField("폼이름 (영문명) ",text: $name)
                     .font(.body)
+                    .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                    .padding(.horizontal,10)
                 Spacer()
-                updateButton(type: "저장"){
+                UpdateButtonView(type: "저장"){
                     Task{
                         try await vm.storePokemonVarieties(form: name)
                     }
@@ -294,8 +155,10 @@ extension PokemonInfoView{
             HStack(alignment: .bottom){
                 TextField("진화 트리 코드 (숫자)",text: $code)
                     .font(.body)
+                    .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                    .padding(.horizontal,10)
                 Spacer()
-                updateButton(type: "저장"){
+                UpdateButtonView(type: "저장"){
                     Task{
                         guard let code = Int(code) else {return}
                         try await vm.storePokemonEvolutionTree(num:code)
@@ -304,4 +167,5 @@ extension PokemonInfoView{
             }
         }
     }
+    
 }

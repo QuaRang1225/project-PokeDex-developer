@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct UpdateButtonView: View {
+    let type:String
+    let action: ()->()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Text(type)
+                .padding(5)
+                .padding(.horizontal)
+                .background(.pink)
+                .cornerRadius(10)
+                .foregroundColor(.white)
+                .bold()
+        }
     }
 }
 
 #Preview {
-    UpdateButtonView()
+    UpdateButtonView(type: "asdad", action: {})
 }
+
