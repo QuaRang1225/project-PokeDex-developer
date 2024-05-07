@@ -42,7 +42,7 @@ extension PokemonView{
                     Color.gray.opacity(0.2)
                 }
                 .resizable()
-                .frame(width: 150,height: 150)
+                .frame(width: 200,height: 200)
                 .cornerRadius(10)
             Spacer()
             VStack(alignment:.leading, spacing: 10){
@@ -88,11 +88,18 @@ extension PokemonView{
                 }
                 
                 
-            }
+            }.padding(.bottom,15)
         }
     }
     var bodyView:some View{
         VStack(alignment: .leading,spacing: 20){
+            HStack{
+                Text("이미지 링크: ").bold()
+                TextField("", text: Binding(
+                    get: { vm.pokemon?.base.image ?? "" },
+                    set: { vm.pokemon?.base.image = $0 }
+                )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
+            }
             HStack{
                 Text("리전폼 & 다른모습 : ").bold()
                 TextField("", text: Binding(
