@@ -30,6 +30,8 @@
 		D6B4C05D2BB2B070009D0D25 /* PokemonInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C05C2BB2B070009D0D25 /* PokemonInfoView.swift */; };
 		D6B4C05F2BB2B1BC009D0D25 /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B4C05E2BB2B1BC009D0D25 /* UpdateViewModel.swift */; };
 		D6B4C0622BB309CD009D0D25 /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = D6B4C0612BB309CD009D0D25 /* PokemonAPI */; };
+		D6C2744E2BEA0E080047C94D /* PokemonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C2744D2BEA0E080047C94D /* PokemonView.swift */; };
+		D6C274512BEA0F0C0047C94D /* UpdateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C274502BEA0F0C0047C94D /* UpdateButtonView.swift */; };
 		D6D0638A2BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */; };
 		D6D0638C2BAB2FD900ADBEB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */; };
 		D6D0638E2BAB2FDB00ADBEB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6D0638D2BAB2FDB00ADBEB4 /* Assets.xcassets */; };
@@ -85,6 +87,8 @@
 		D6B27F2F2BE2168A00D693F5 /* TextEntries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEntries.swift; sourceTree = "<group>"; };
 		D6B4C05C2BB2B070009D0D25 /* PokemonInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonInfoView.swift; sourceTree = "<group>"; };
 		D6B4C05E2BB2B1BC009D0D25 /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
+		D6C2744D2BEA0E080047C94D /* PokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonView.swift; sourceTree = "<group>"; };
+		D6C274502BEA0F0C0047C94D /* UpdateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateButtonView.swift; sourceTree = "<group>"; };
 		D6D063862BAB2FD900ADBEB4 /* PokeDex_Developer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeDex_Developer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeDex_DeveloperApp.swift; sourceTree = "<group>"; };
 		D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -200,8 +204,17 @@
 			isa = PBXGroup;
 			children = (
 				D6B4C05C2BB2B070009D0D25 /* PokemonInfoView.swift */,
+				D6C2744D2BEA0E080047C94D /* PokemonView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D6C2744F2BEA0EFB0047C94D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D6C274502BEA0F0C0047C94D /* UpdateButtonView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		D6D0637D2BAB2FD900ADBEB4 = {
@@ -228,6 +241,7 @@
 		D6D063882BAB2FD900ADBEB4 /* PokeDex_Developer */ = {
 			isa = PBXGroup;
 			children = (
+				D6C2744F2BEA0EFB0047C94D /* Components */,
 				D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */,
 				D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */,
 				D6B27F062BE0DF5B00D693F5 /* Model */,
@@ -452,6 +466,7 @@
 				D62E3BC12BB2A0A80088758D /* RequestTestView.swift in Sources */,
 				D6B27F302BE2168A00D693F5 /* TextEntries.swift in Sources */,
 				D6B4C05D2BB2B070009D0D25 /* PokemonInfoView.swift in Sources */,
+				D6C2744E2BEA0E080047C94D /* PokemonView.swift in Sources */,
 				D6F54E742BADAD5800145AFF /* FormsFilter.swift in Sources */,
 				D63E548C2BE4FCE600DE52E8 /* PokemonsListResponse.swift in Sources */,
 				D6F54E6F2BAC449E00145AFF /* PokemonManager.swift in Sources */,
@@ -461,6 +476,7 @@
 				D6B4C05F2BB2B1BC009D0D25 /* UpdateViewModel.swift in Sources */,
 				D62E3BB52BAEB2BE0088758D /* Pokemon.swift in Sources */,
 				D62E3BB32BAE9BEB0088758D /* PokemonEvolutoinManager.swift in Sources */,
+				D6C274512BEA0F0C0047C94D /* UpdateButtonView.swift in Sources */,
 				D6B27F2E2BE2168200D693F5 /* Dex.swift in Sources */,
 				D62E3BBF2BB2A0730088758D /* EvolTreeNodeView.swift in Sources */,
 				D63E54902BE4FD5C00DE52E8 /* PokemonPages.swift in Sources */,

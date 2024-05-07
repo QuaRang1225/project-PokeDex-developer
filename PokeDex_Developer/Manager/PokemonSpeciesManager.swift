@@ -37,7 +37,7 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         //한글로 되어있는 도감설명만 필터링
         let koreanFlavorTextEntries = textEntries.filter{$0.language?.name == "ko"}
         
-        return TextEntries(text: koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name}, version: koreanFlavorTextEntries.compactMap{$0.flavorText})
+        return TextEntries(text:koreanFlavorTextEntries.compactMap{$0.flavorText} , version:  koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name})
         
     }
     
