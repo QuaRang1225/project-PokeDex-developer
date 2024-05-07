@@ -12,6 +12,7 @@ import Combine
 class UpdateViewModel:ObservableObject{
     
     @Published var pokemon:Pokemons? = nil
+    @Published var varieties:Varieties? = nil
     @Published var pokemonList:PokemonPages? = nil
     
     @Published var query:Parameters = ["page": 1, "region": "전국", "types_1": "", "types_2": "", "query": ""]
@@ -65,11 +66,9 @@ class UpdateViewModel:ObservableObject{
     func deletePokemon(num:Int)async throws{
         request(params:nil, method: .delete, endPoint: "pokemon/\(num)")
     }
-    
-    
-    
-    
-    
+    func deleteForm(name:String)async throws{
+        request(params:nil, method: .delete, endPoint: "pokemon/\(name)")
+    }
     
     
     
@@ -146,6 +145,25 @@ class UpdateViewModel:ObservableObject{
                 "version" : pokemon.textEntries.version
             ],
             "varieties" : pokemon.varieties
+        ] as Parameters
+    }
+    private func formParameters(form:Varieties) -> Parameters{
+        
+        return [
+            "_id" : form.id,
+            "abilites" : [
+                "name" : form.abilites.name,
+                "text" : form.abilites.text,
+                "is_hidden" : form.abilites.isHidden,
+            ],
+            "form" : [
+                "images" : form.form.images,
+                "name" : form.form.name
+            ],
+            "types" : form.types,
+            "height" : form.height,
+            "weight" : form.weight,
+            "stats" : form.stats
         ] as Parameters
     }
 }
