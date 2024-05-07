@@ -21,22 +21,10 @@ struct PokemonView: View {
             ScrollView(showsIndicators: false){
                 header
                 bodyView
-                
             }
             .padding(.horizontal,10)
             .background(Color.gray.opacity(0.1))
-            Button {
-                Task{
-                    guard let num = Int(fetchNum) else {return}
-                    try await vm.fetchPokemon(num:num)
-                }
-            } label: {
-                Text("불러오기")
-                    .bold()
-                    .padding(.vertical,20)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity)
-            }.background(Color.pink)
+            communication
         }
     }
 }
@@ -207,6 +195,46 @@ extension PokemonView{
                     }
                 }
             }.padding(.bottom)
+        }
+    }
+    var communication:some View{
+        HStack(spacing: 0){
+            Button {
+                Task{
+                    guard let num = Int(fetchNum) else {return}
+                    try await vm.fetchPokemon(num:num)
+                }
+            } label: {
+                Text("불러오기")
+                    .bold()
+                    .padding(.vertical,20)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+            }.background(Color.pink)
+            Button {
+                Task{
+                    guard let num = Int(fetchNum) else {return}
+//                    try await vm.fetchPokemon(num:num)
+                }
+            } label: {
+                Text("수정하기")
+                    .bold()
+                    .padding(.vertical,20)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+            }.background(Color.pink.opacity(0.7))
+            Button {
+                Task{
+                    guard let num = Int(fetchNum) else {return}
+//                    try await vm.fetchPokemon(num:num)
+                }
+            } label: {
+                Text("삭제하기")
+                    .bold()
+                    .padding(.vertical,20)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+            }.background(Color.pink.opacity(0.5))
         }
     }
 }
