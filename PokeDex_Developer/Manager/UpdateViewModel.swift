@@ -52,8 +52,14 @@ class UpdateViewModel:ObservableObject{
         request(params: params,method: .post, endPoint: "tree")
     }
     
+    //DB수정 =============================
+    func updatePokemon(num:Int,pokemon:Pokemons)async throws{
+        request(params: pokemonParameters(pokemon: pokemon),method: .patch, endPoint: "pokemon/\(num)")
+    }
+    
+    //DB삭제 =============================
     func deletePokemon(num:Int)async throws{
-        request(params: Parameters(), method: .delete, endPoint: "pokemon/\(num)")
+        request(params:nil, method: .delete, endPoint: "pokemon/\(num)")
     }
     
     
@@ -79,7 +85,7 @@ class UpdateViewModel:ObservableObject{
             try await storePokemonEvolutionTree(num: pokemonData.chian)
         }
     }
-    private func request(params:Parameters,method:HTTPMethod,endPoint:String){
+    private func request(params:Parameters?,method:HTTPMethod,endPoint:String){
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: JSONEncoding.default)
             .validate()
             .response{ response in
@@ -92,13 +98,7 @@ class UpdateViewModel:ObservableObject{
             }
     }
     private func requestDecodable<T:Decodable>(params:Parameters?,method:HTTPMethod,endPoint:String,encoding:ParameterEncoding,save:@escaping ((T) -> Void)){
-//        var requset: DataRequest? = nil
-//        if let params{
-//           requset = AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: encoding)
-//        }else{
-//            requset =
-//        }
-//        
+
         AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: encoding)
             .publishDecodable(type: T.self)
             .value()
@@ -112,7 +112,37 @@ class UpdateViewModel:ObservableObject{
                 }
             }), receiveValue: save)
             .store(in: &cancelable)
+    }
+    
+    private func pokemonParameters(pokemon:Pokemons) -> Parameters{
         
+        var dex = [[String:Any]]()
+        pokemon.dex.forEach {
+            let dic = ["region":$0.region,"num":$0.num]
+            dex.append(dic)
+        }
+        return [
+            "_id" : pokemon.id,
+            "color" : pokemon.color,
+            "base": [
+                "types": pokemon.base.types,
+                "image": pokemon.base.image
+            ],
+            "capture_rate": pokemon.captureRate,
+            "dex" : dex,
+            "egg_group":  pokemon.eggGroup,
+            "evolution_tree": pokemon.evolutionTree,
+            "forms_switchable": pokemon.formsSwitchable,
+            "gender_rate": pokemon.genderRate,
+            "genra": pokemon.genra,
+            "hatch_counter": pokemon.hatchCounter,
+            "name": pokemon.name,
+            "text_entries" : [
+                "text": pokemon.textEntries.text,
+                "version" : pokemon.textEntries.version
+            ],
+            "varieties" : pokemon.varieties
+        ] as Parameters
     }
 }
 

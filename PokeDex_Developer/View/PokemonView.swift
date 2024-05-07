@@ -213,8 +213,8 @@ extension PokemonView{
             }.background(Color.pink)
             Button {
                 Task{
-                    guard let num = Int(fetchNum) else {return}
-//                    try await vm.fetchPokemon(num:num)
+                    guard let num = Int(fetchNum),let pokemon = vm.pokemon else {return}
+                    try await vm.updatePokemon(num:num, pokemon: pokemon)
                 }
             } label: {
                 Text("수정하기")
@@ -226,7 +226,7 @@ extension PokemonView{
             Button {
                 Task{
                     guard let num = Int(fetchNum) else {return}
-//                    try await vm.fetchPokemon(num:num)
+                    try await vm.deletePokemon(num:num)
                 }
             } label: {
                 Text("삭제하기")
