@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Dex :Codable{
+struct Dex :Codable,Hashable{
     var num : Int
     var region : String
 }
