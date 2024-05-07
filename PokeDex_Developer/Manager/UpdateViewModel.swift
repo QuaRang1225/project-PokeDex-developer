@@ -7,8 +7,15 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 class UpdateViewModel:ObservableObject{
+    
+    @Published var pokemon:Pokemons? = nil
+    @Published var pokemonList:PokemonPages? = nil
+    
+    @Published var query:Parameters = ["page": 1, "region": "전국", "types_1": "", "types_2": "", "query": ""]
+    var cancelable = Set<AnyCancellable>()
     
     //DB저장 ==============================
     func storePokemon(num:Int)async throws -> (form : [String],chian: Int){
@@ -26,6 +33,24 @@ class UpdateViewModel:ObservableObject{
     }
     
     //DB읽기 =============================
+    func fetchPokemon(num:Int) async throws{
+        requestDecodable(params: nil, method: .get, endPoint: "pokemon/\(num)",encoding: JSONEncoding.default) { [weak self] (data : PokemonResponse) in
+            self?.pokemon = data.data
+        }
+    }
+    func fetchPokemons() async throws{
+        requestDecodable(params: query, method: .get, endPoint: "pokemon",encoding: URLEncoding.queryString){ [weak self] (data : PokemonListResponse) in
+            self?.pokemonList = data.data
+        }
+    }
+    func fetchPokemonVarieties(form:String)async throws{
+        let params = try await FetchParametersManager.shared.getPokemon(form: form)
+        request(params: params,method: .post, endPoint: "variety")
+    }
+    func fetchPokemonEvolutionTree(num:Int)async throws{
+        let params = try await FetchParametersManager.shared.getPokemonEvolution(num: num)
+        request(params: params,method: .post, endPoint: "tree")
+    }
     
     func deletePokemon(num:Int)async throws{
         request(params: Parameters(), method: .delete, endPoint: "pokemon/\(num)")
@@ -36,7 +61,7 @@ class UpdateViewModel:ObservableObject{
     
     
     
-   
+    
     
     func updatePokemonInfo(num:Int) async throws{
         let pokemonSpeciesManager = PokemonSpeciesManager.shared
@@ -65,6 +90,29 @@ class UpdateViewModel:ObservableObject{
                     print("Error: \(error)")
                 }
             }
+    }
+    private func requestDecodable<T:Decodable>(params:Parameters?,method:HTTPMethod,endPoint:String,encoding:ParameterEncoding,save:@escaping ((T) -> Void)){
+//        var requset: DataRequest? = nil
+//        if let params{
+//           requset = AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: encoding)
+//        }else{
+//            requset =
+//        }
+//        
+        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: encoding)
+            .publishDecodable(type: T.self)
+            .value()
+            .eraseToAnyPublisher()
+            .sink(receiveCompletion: ({ completion in
+                switch completion{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .finished:
+                    print(completion)
+                }
+            }), receiveValue: save)
+            .store(in: &cancelable)
+        
     }
 }
 

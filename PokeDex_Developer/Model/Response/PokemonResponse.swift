@@ -9,6 +9,6 @@ import Foundation
 
 struct Response: Codable {
     let status: Int
-    let data: [Int]
+    let data: Pokemons
     let message : String
 }
