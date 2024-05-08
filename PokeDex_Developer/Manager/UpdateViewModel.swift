@@ -13,6 +13,7 @@ class UpdateViewModel:ObservableObject{
     
     @Published var pokemon:Pokemons? = nil
     @Published var varieties:Varieties? = nil
+    @Published var tree:EvolutionTo? = nil
     @Published var pokemonList:PokemonPages? = nil
     
     @Published var query:Parameters = ["page": 1, "region": "전국", "types_1": "", "types_2": "", "query": ""]
@@ -50,8 +51,9 @@ class UpdateViewModel:ObservableObject{
         }
     }
     func fetchPokemonEvolutionTree(num:Int)async throws{
-        let params = try await FetchParametersManager.shared.getPokemonEvolution(num: num)
-        request(params: params,method: .post, endPoint: "tree")
+        requestDecodable(params: nil, method: .get, endPoint: "tree/\(num)",encoding: URLEncoding.queryString){ [weak self] (data : EvolutionTreeResponse) in
+            self?.tree = data.data
+        }
     }
     
     //DB수정 =============================
@@ -61,15 +63,20 @@ class UpdateViewModel:ObservableObject{
     func updatePokemonForm(name:String,varieties:Varieties)async throws{
         request(params: formParameters(form: varieties),method: .patch, endPoint: "variety/\(name)")
     }
+    func updateEvolutionTree(num:Int,tree:EvolutionTo)async throws{
+        request(params: treeParameters(tree: tree),method: .patch, endPoint: "tree/\(num)")
+    }
     
     //DB삭제 =============================
     func deletePokemon(num:Int)async throws{
         request(params:nil, method: .delete, endPoint: "pokemon/\(num)")
     }
     func deleteForm(name:String)async throws{
-        request(params:nil, method: .delete, endPoint: "pokemon/\(name)")
+        request(params:nil, method: .delete, endPoint: "variety/\(name)")
     }
-    
+    func deleteTree(num:Int)async throws{
+        request(params:nil, method: .delete, endPoint: "tree/\(num)")
+    }
     
     
     func updatePokemonInfo(num:Int) async throws{
@@ -165,6 +172,33 @@ class UpdateViewModel:ObservableObject{
             "weight" : form.weight,
             "stats" : form.stats
         ] as Parameters
+    }
+    private func treeParameters(tree:EvolutionTo) -> Parameters{
+        
+        var rootTree:[String:Any] = [:]
+        var middleTree:[[String:Any]] = []
+        var lastNode:[[String:Any]] = []
+        
+        rootTree["_id"] = tree.id
+        rootTree["name"] = tree.name
+        rootTree["image"] = tree.image
+        for child in tree.evolTo{
+            var middle:[String:Any] = [:]
+            middle["name"] = child.name
+            middle["image"] = child.image
+            for ch in child.evolTo{
+                var last:[String:Any] = [:]
+                last["name"] = ch.name
+                last["image"] = ch.image
+                last["evol_to"] = []
+                lastNode.append(last)
+            }
+            middle["evol_to"] = lastNode
+            middleTree.append(middle)
+        }
+        rootTree["evol_to"] = middleTree
+        
+        return rootTree as Parameters
     }
 }
 

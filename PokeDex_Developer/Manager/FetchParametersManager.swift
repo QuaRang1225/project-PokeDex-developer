@@ -95,11 +95,11 @@ class FetchParametersManager{
         rootTree["_id"] = num
         rootTree["name"] = chain.name
         rootTree["image"] = chain.image
-        for child in chain.children{
+        for child in chain.evolTo{
             var middle:[String:Any] = [:]
             middle["name"] = child.name
             middle["image"] = child.image
-            for ch in child.children{
+            for ch in child.evolTo{
                 var last:[String:Any] = [:]
                 last["name"] = ch.name
                 last["image"] = ch.image

@@ -22,30 +22,30 @@ class PokemonEvolutoinManager:ObservableObject{
         return dexNum
     }
     
-    func getEvolutionChain(num:Int) async throws -> PokemonEvolutionInfo{
-        guard let chain = try await PokemonAPI().evolutionService.fetchEvolutionChain(num).chain else {return PokemonEvolutionInfo(image: [], name: "")}
+    func getEvolutionChain(num:Int) async throws -> EvolutionTo{
+        guard let chain = try await PokemonAPI().evolutionService.fetchEvolutionChain(num).chain else {return EvolutionTo(image: [], name: "")}
         
-        guard let first = chain.species?.name else {return PokemonEvolutionInfo(image: [], name: "")}    //1단계거나 진화형태가 없을 경우 first로 취급 - 포켓몬 영문명 반환
+        guard let first = chain.species?.name else {return EvolutionTo(image: [], name: "")}    //1단계거나 진화형태가 없을 경우 first로 취급 - 포켓몬 영문명 반환
         
-        var PokemonSecond:[PokemonEvolutionInfo] = []
+        var PokemonSecond:[EvolutionTo] = []
         if let secondChains = chain.evolvesTo {  //2단계 포켓몬(마지막일 수 있음) - 포켓몬 영문명 반환
             for secondChain in secondChains{
-                var PokemonThird:[PokemonEvolutionInfo] = []
+                var PokemonThird:[EvolutionTo] = []
                 if let thirdChains = secondChain.evolvesTo {    //3단계 포켓몬 - 포켓몬 영문명 반환
                     for thirdChain in thirdChains{
                         let thirdPokemonName = try await PokemonSpeciesManager.shared.getName(name: thirdChain.species?.name ?? "")
                         let thirdPokemonImages = try await PokemonManager.shared.getFormsImage(name: try await PokemonSpeciesManager.shared.getVarieties(name: thirdChain.species?.name ?? "").first ?? "",getOnlyForms: true)
-                        PokemonThird.append(PokemonEvolutionInfo(image: thirdPokemonImages, name: thirdPokemonName))
+                        PokemonThird.append(EvolutionTo(image: thirdPokemonImages, name: thirdPokemonName))
                     }
                 }
                 let secondPokemonName = try await PokemonSpeciesManager.shared.getName(name: secondChain.species?.name ?? "")
                 let secondPokemonImages = try await PokemonManager.shared.getFormsImage(name: try await PokemonSpeciesManager.shared.getVarieties(name: secondChain.species?.name ?? "").first ?? "",getOnlyForms: true)
-                PokemonSecond.append(PokemonEvolutionInfo(image: secondPokemonImages, name: secondPokemonName,children: PokemonThird))
+                PokemonSecond.append(EvolutionTo(image: secondPokemonImages, name: secondPokemonName,evolTo: PokemonThird))
             }
         }
         let firstPokemonName = try await PokemonSpeciesManager.shared.getName(name: first)
         let firstPokemonImages = try await PokemonManager.shared.getFormsImage(name: try await PokemonSpeciesManager.shared.getVarieties(name: first).first ?? "",getOnlyForms: true)
-        return PokemonEvolutionInfo(image: firstPokemonImages, name: firstPokemonName,children: PokemonSecond)
+        return EvolutionTo(image: firstPokemonImages, name: firstPokemonName,evolTo: PokemonSecond)
         
         
         
