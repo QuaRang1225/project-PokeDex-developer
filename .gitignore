@@ -1,6 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,swift,swiftpackagemanager,swiftpm,firebase
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift,swiftpackagemanager,swiftpm,firebase
-
+*.xcconfig
 ### Firebase ###
 .idea
 **/node_modules/*

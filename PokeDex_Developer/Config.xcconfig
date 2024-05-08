@@ -1,0 +1,10 @@
+//
+//  Config.xcconfig
+//  PokeDex_Developer
+//
+//  Created by 유영웅 on 5/1/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+LOCAL_URL = 220.123.52.178:3000

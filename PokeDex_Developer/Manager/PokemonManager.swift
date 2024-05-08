@@ -45,8 +45,6 @@ class PokemonManager:ObservableObject,Pokemon{
     
     func getFormsImage(name:String,getOnlyForms:Bool) async throws -> [String]{
         
-        
-        
         let pokemon = try await PokemonAPI().pokemonService.fetchPokemon(name)
         let forms = pokemon.forms?.compactMap{$0.name} ?? []        //폼 이름 수집
         guard let isDefault = pokemon.isDefault else {return [] }      //디폴트 모습인지 아닌지를 판단하여 이미지 저장 로직 변경
@@ -95,16 +93,19 @@ class PokemonManager:ObservableObject,Pokemon{
         guard let height = try await PokemonAPI().pokemonService.fetchPokemon(name).height else { return 0 }
         return Double(height) / 10
     }
-    func getStats(name:String) async throws -> ([String],[Int]){
-        guard let stats = try await PokemonAPI().pokemonService.fetchPokemon(name).stats else {return ([],[])}
-        return (stats.compactMap{StatFilter(rawValue: $0.stat?.name ?? "")?.name},stats.compactMap{$0.baseStat})
+    func getStats(name:String) async throws -> [Int]{
+        guard let stats = try await PokemonAPI().pokemonService.fetchPokemon(name).stats else {return []}
+        return stats.compactMap{$0.baseStat}
     }
     
     func getTypes(name:String) async throws -> [String]{
         guard let types = try await PokemonAPI().pokemonService.fetchPokemon(name).types else {return ([])}
         return types.compactMap{TypeFilter(rawValue: $0.type?.name ?? "")?.name}
     }
-    
+    func getTypes(num:Int) async throws -> [String]{
+        guard let types = try await PokemonAPI().pokemonService.fetchPokemon(num).types else {return ([])}
+        return types.compactMap{TypeFilter(rawValue: $0.type?.name ?? "")?.name}
+    }
     func getWeight(name:String) async throws -> Double{
         guard let weight = try await PokemonAPI().pokemonService.fetchPokemon(name).weight else { return 0 }
         return Double(weight) / 10

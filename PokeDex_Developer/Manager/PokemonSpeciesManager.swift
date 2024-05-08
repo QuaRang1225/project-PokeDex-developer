@@ -32,13 +32,12 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
     }
     
     
-    func getTextEntries(num:Int) async throws -> ([String],[String]){
-        guard let textEntries = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).flavorTextEntries else { return ([],[]) }
+    func getTextEntries(num:Int) async throws -> TextEntries{
+        guard let textEntries = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).flavorTextEntries else { return TextEntries(text: [], version: []) }
         //한글로 되어있는 도감설명만 필터링
         let koreanFlavorTextEntries = textEntries.filter{$0.language?.name == "ko"}
         
-        let koreanTextEntriesList = (koreanFlavorTextEntries.compactMap{$0.flavorText},koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name})
-        return koreanTextEntriesList
+        return TextEntries(text:koreanFlavorTextEntries.compactMap{$0.flavorText} , version:  koreanFlavorTextEntries.compactMap{$0.version?.name}.compactMap{VersionFilter(rawValue: $0)?.name})
         
     }
     
@@ -74,12 +73,14 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
         return names.first(where: {$0.language?.name == "ko"})?.name ?? ""
     }
     
-    func getPokdexNumbers(num:Int) async throws -> ([String],[Int]){
-        guard let pokedexNumbers = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).pokedexNumbers else {return([],[])}
+    func getPokdexNumbers(num:Int) async throws -> [[String:Any]]{
+        guard let pokedexNumbers = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).pokedexNumbers else {return []}
         let koreanArea = pokedexNumbers.compactMap{AreaFilter(rawValue: $0.pokedex?.name ?? "")?.name}
-        return (koreanArea,pokedexNumbers.compactMap{$0.entryNumber})
+        
+        var dex = [[String:Any]]()
+        zip(koreanArea,pokedexNumbers.compactMap{$0.entryNumber}).forEach { dex.append(["num" : $1 , "region" : $0]) }
+        return dex
     }
-    
     
     func getVarieties(num:Int) async throws -> [String]{
         guard let pokedexVarieties = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).varieties else {return([])}
@@ -98,5 +99,9 @@ class PokemonSpeciesManager:ObservableObject,PokemonSpecies{
     func getEvolutionFromSpecies(num:Int) async throws -> Bool{
         guard  (try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).evolvesFromSpecies != nil) else {return false}
         return true
+    }
+    func getColor(num:Int) async throws -> String {
+        guard  let color = try await PokemonAPI().pokemonService.fetchPokemonSpecies(num).color?.name else {return ""}
+        return color
     }
 }
