@@ -1,38 +1,46 @@
+////
+////  EvolTreeNodeView.swift
+////  PokeDex_Developer
+////
+////  Created by 유영웅 on 3/26/24.
+////
 //
-//  EvolTreeNodeView.swift
-//  PokeDex_Developer
-//
-//  Created by 유영웅 on 3/26/24.
-//
-
 import SwiftUI
+import Kingfisher
 
 struct EvolTreeNodeView: View {
     let items = [GridItem(.flexible()),GridItem(.flexible()),GridItem(.flexible())]
-    let node: PokemonEvolutionInfo
+    let node: EvolutionTo
     
     var body: some View {
         VStack {
-            Circle()
-                .fill(Color.blue)
-                .frame(width: 80, height: 80)
-                .overlay(
-                    Text("\(node.name)")
-                        .foregroundColor(.white)
-                        .font(.headline)
-                )
-                .padding()
+            HStack{
+                ForEach(node.image,id: \.self){
+                    KFImage(URL(string: $0))
+                        .placeholder{
+                            Color.gray.opacity(0.2)
+                        }
+                        .resizable()
+                        .frame(width: 200,height: 200)
+                        .cornerRadius(10)
+                }
+            }
+            Text("이름 : \(node.name)").bold()
+            if !node.evolTo.isEmpty{
+                Image(systemName: "chevron.down")
+                    .font(.title2)
+                    .padding(.top,20)
+            }
             HStack (alignment: .top){
-                if node.children.count > 3{
+                if node.evolTo.count > 3{
                     LazyVGrid(columns: items){
-                        ForEach(node.children) { child in
+                        ForEach(node.evolTo,id: \.self) { child in
                             EvolTreeNodeView(node: child)
                                 .padding()
                         }
                     }
-                    
                 }else{
-                    ForEach(node.children) { child in
+                    ForEach(node.evolTo,id: \.self) { child in
                         EvolTreeNodeView(node: child)
                     }
                 }
@@ -42,5 +50,5 @@ struct EvolTreeNodeView: View {
 }
 
 #Preview {
-    EvolTreeNodeView(node:PokemonEvolutionInfo(image: [], name: ""))
+    EvolTreeNodeView(node:EvolutionTo(image: [], name: ""))
 }

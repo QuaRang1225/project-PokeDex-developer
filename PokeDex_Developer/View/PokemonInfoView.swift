@@ -54,6 +54,7 @@ struct PokemonInfoView: View {
             }else if varietieInfo{
                 VarietiesView().environmentObject(vm)
             }else{
+                EvolutionTreeView().environmentObject(vm)
             }
         }
     }
