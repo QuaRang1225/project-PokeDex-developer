@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import Combine
+import PokemonAPI
 
 class UpdateViewModel:ObservableObject{
     
@@ -93,6 +94,14 @@ class UpdateViewModel:ObservableObject{
         }
         if !(try await pokemonSpeciesManager.getEvolutionFromSpecies(num: num)){
             try await storePokemonEvolutionTree(num: pokemonData.chian)
+        }
+    }
+    func updateForms(num:Int) async throws{
+        await withThrowingTaskGroup(of: Void.self) { group in
+            group.addTask {
+                async let form = PokemonAPI().pokemonService.fetchPokemon(num).name ?? ""
+                try await self.storePokemonVarieties(form: form)
+            }
         }
     }
     private func request(params:Parameters?,method:HTTPMethod,endPoint:String){

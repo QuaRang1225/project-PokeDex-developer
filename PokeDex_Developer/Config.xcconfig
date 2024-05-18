@@ -8,3 +8,4 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 LOCAL_URL = 220.123.52.178:3000
+AWS_URL = poke-dex-env.eba-gq6ggz7x.ap-northeast-2.elasticbeanstalk.com

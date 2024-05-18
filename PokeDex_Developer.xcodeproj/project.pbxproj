@@ -151,7 +151,6 @@
 		D62E3BBD2BB2A0580088758D /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				D62E3BBE2BB2A0730088758D /* EvolTreeNodeView.swift */,
 				D62E3BC02BB2A0A80088758D /* RequestTestView.swift */,
 			);
 			path = Test;
@@ -228,10 +227,11 @@
 		D6B4C05B2BB2B05E009D0D25 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D62E3BBE2BB2A0730088758D /* EvolTreeNodeView.swift */,
+				D67EDB122BEA6ABB009C87BD /* EvolutionTreeView.swift */,
 				D6B4C05C2BB2B070009D0D25 /* PokemonInfoView.swift */,
 				D6C2744D2BEA0E080047C94D /* PokemonView.swift */,
 				D67EDB022BEA450C009C87BD /* VarietiesView.swift */,
-				D67EDB122BEA6ABB009C87BD /* EvolutionTreeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -271,10 +271,10 @@
 				D6D0638B2BAB2FD900ADBEB4 /* ContentView.swift */,
 				D6D063892BAB2FD900ADBEB4 /* PokeDex_DeveloperApp.swift */,
 				D6B27F252BE13ADE00D693F5 /* PokeDex-Developer-Info.plist */,
+				D62E3BBD2BB2A0580088758D /* Test */,
 				D6C2744F2BEA0EFB0047C94D /* Components */,
 				D6B27F062BE0DF5B00D693F5 /* Model */,
 				D6B4C05B2BB2B05E009D0D25 /* View */,
-				D62E3BBD2BB2A0580088758D /* Test */,
 				D6F54E6B2BAC417D00145AFF /* Protocol */,
 				D6F54E5D2BABFAF300145AFF /* Filter */,
 				D6D063BD2BAB39F900ADBEB4 /* Manager */,
@@ -687,8 +687,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AWS_URL = "poke-dex-env.eba-gq6ggz7x.ap-northeast-2.elasticbeanstalk.com";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PokeDex_Developer/Preview Content\"";
 				DEVELOPMENT_TEAM = N676ZFA7W8;
 				ENABLE_PREVIEWS = YES;
@@ -707,6 +708,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "quarang.PokeDex-Developer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -718,8 +721,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				AWS_URL = "poke-dex-env.eba-gq6ggz7x.ap-northeast-2.elasticbeanstalk.com";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PokeDex_Developer/Preview Content\"";
 				DEVELOPMENT_TEAM = N676ZFA7W8;
 				ENABLE_PREVIEWS = YES;
@@ -738,6 +742,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "quarang.PokeDex-Developer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

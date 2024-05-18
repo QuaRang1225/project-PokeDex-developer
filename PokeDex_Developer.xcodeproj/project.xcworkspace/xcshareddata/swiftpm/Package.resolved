@@ -1,0 +1,32 @@
+{
+  "originHash" : "011e1fa6ca090a962507d1d902009c97570d1b17636d4b1c482215a0bb04ffc0",
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "5b92f029fab2cce44386d28588098b5be0824ef5",
+        "version" : "7.11.0"
+      }
+    },
+    {
+      "identity" : "pokemonapi",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/QuaRang1225/PokemonAPI.git",
+      "state" : {
+        "revision" : "ba3159257c7cbbdd13e1612a864a14b3be9545e8"
+      }
+    }
+  ],
+  "version" : 3
+}

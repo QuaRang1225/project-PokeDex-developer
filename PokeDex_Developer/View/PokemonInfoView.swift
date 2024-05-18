@@ -12,6 +12,8 @@ struct PokemonInfoView: View {
     @StateObject var vm = UpdateViewModel()
     @State var firstNum = ""
     @State var lastNum = ""
+    @State var firstFormNum = ""
+    @State var lastFormNum = ""
     @State var storeNum = ""
     @State var name = ""
     @State var code = ""
@@ -23,6 +25,8 @@ struct PokemonInfoView: View {
         VStack{
             title(text: "포켓몬 DB 저장", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/master-ball.png?raw=true", show: nil)
             storePokemons
+            title(text: "포켓몬 폼 DB 저장", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/ultra-ball.png?raw=true", show: nil)
+            storeForms
             title(text: "포켓몬 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/poke-ball.png?raw=true", show: $pokeonInfo)
             storePokemon
             title(text: "폼 정보", imageLink: "https://github.com/PokeAPI/sprites/blob/master/sprites/items/sablenite.png?raw=true", show: $varietieInfo)
@@ -111,6 +115,37 @@ extension PokemonInfoView{
                             for i in first...last{
                                 group.addTask {
                                     try await vm.updatePokemonInfo(num: i)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    var storeForms: some View{
+        VStack(alignment: .leading){
+            HStack(alignment: .bottom){
+                    TextField("시작번호",text: $firstFormNum)
+                        .frame(width: 80)
+                        .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                        .padding(.horizontal,10)
+                    Text("~")
+                    TextField("끝번호",text: $lastFormNum)
+                        .frame(width: 80)
+                        .overlay(Rectangle().frame(height: 2).padding(.top, 35).foregroundColor(.pink))
+                        .padding(.horizontal,10)
+                
+                .font(.body)
+                Spacer()
+                
+                UpdateButtonView(type: "저장"){
+                    Task{
+                        await withThrowingTaskGroup(of: Void.self) { group in
+                            guard let first = Int(firstFormNum),let last = Int(lastFormNum) else { return }
+                            for i in first...last{
+                                group.addTask {
+                                    try await vm.updateForms(num: i)
                                 }
                             }
                         }
