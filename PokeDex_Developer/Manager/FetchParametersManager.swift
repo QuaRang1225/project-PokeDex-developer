@@ -75,8 +75,8 @@ class FetchParametersManager{
                 "is_hidden" : abilites.2,
             ],
             "form" : [
-                "images" : formsImages[0],
-                "name" : formsName[0]
+                "images" : formsImages,
+                "name" : formsName
             ],
             "types" : types,
             "height" : height,

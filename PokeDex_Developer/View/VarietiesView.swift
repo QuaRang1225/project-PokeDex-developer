@@ -36,7 +36,7 @@ struct VarietiesView: View {
 extension VarietiesView{
     var header:some View{
         HStack(alignment: .bottom){
-            KFImage(URL(string: vm.varieties?.form.images ?? ""))
+            KFImage(URL(string: vm.varieties?.form.images[0] ?? ""))
                 .placeholder{
                     Color.gray.opacity(0.2)
                 }
@@ -56,8 +56,8 @@ extension VarietiesView{
                 HStack{
                     Text("이름 : ").bold()
                     TextField("", text: Binding(
-                        get: { vm.varieties?.form.name ?? "" },
-                        set: { vm.varieties?.form.name = $0 }
+                        get: { vm.varieties?.form.name[0] ?? ""},
+                        set: { vm.varieties?.form.name[0] = $0 }
                     )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
                 }
                 HStack{
@@ -86,8 +86,8 @@ extension VarietiesView{
             HStack{
                 Text("이미지 링크: ").bold()
                 TextField("", text: Binding(
-                    get: { vm.varieties?.form.images ?? "" },
-                    set: { vm.varieties?.form.images = $0 }
+                    get: { vm.varieties?.form.images[0] ?? "" },
+                    set: { vm.varieties?.form.images[0] = $0 }
                 )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
             }
             Text("특성").bold()
