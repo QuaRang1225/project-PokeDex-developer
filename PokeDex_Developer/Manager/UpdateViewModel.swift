@@ -19,6 +19,9 @@ class UpdateViewModel:ObservableObject{
     
     @Published var query:Parameters = ["page": 1, "region": "전국", "types_1": "", "types_2": "", "query": ""]
     var cancelable = Set<AnyCancellable>()
+    var textEntries = PassthroughSubject<(),Never>()
+    var egg = PassthroughSubject<(),Never>()
+    var abilities = PassthroughSubject<(),Never>()
     
     //DB저장 ==============================
     func storePokemon(num:Int)async throws -> (form : [String],chian: Int){
@@ -39,6 +42,8 @@ class UpdateViewModel:ObservableObject{
     func fetchPokemon(num:Int) async throws{
         requestDecodable(params: nil, method: .get, endPoint: "pokemon/\(num)",encoding: JSONEncoding.default) { [weak self] (data : PokemonResponse) in
             self?.pokemon = data.data
+            self?.egg.send()
+            self?.textEntries.send()
         }
     }
     func fetchPokemons() async throws{
@@ -49,6 +54,7 @@ class UpdateViewModel:ObservableObject{
     func fetchPokemonVarieties(form:String)async throws{
         requestDecodable(params: nil, method: .get, endPoint: "variety/\(form)",encoding: URLEncoding.queryString){ [weak self] (data : VarietiesRespons) in
             self?.varieties = data.data
+            self?.abilities.send()
         }
     }
     func fetchPokemonEvolutionTree(num:Int)async throws{
@@ -105,7 +111,7 @@ class UpdateViewModel:ObservableObject{
         }
     }
     private func request(params:Parameters?,method:HTTPMethod,endPoint:String){
-        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: JSONEncoding.default)
+        AF.request("http://\(Bundle.main.infoDictionary?["AWS_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: JSONEncoding.default)
             .validate()
             .response{ response in
                 switch response.result {
@@ -118,7 +124,7 @@ class UpdateViewModel:ObservableObject{
     }
     private func requestDecodable<T:Decodable>(params:Parameters?,method:HTTPMethod,endPoint:String,encoding:ParameterEncoding,save:@escaping ((T) -> Void)){
 
-        AF.request("http://\(Bundle.main.infoDictionary?["LOCAL_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: encoding)
+        AF.request("http://\(Bundle.main.infoDictionary?["AWS_URL"] ?? "")/\(endPoint)", method: method, parameters: params, encoding: encoding)
             .publishDecodable(type: T.self)
             .value()
             .eraseToAnyPublisher()

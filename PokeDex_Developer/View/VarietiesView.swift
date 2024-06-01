@@ -10,6 +10,7 @@ import Kingfisher
 
 struct VarietiesView: View {
     @EnvironmentObject var vm:UpdateViewModel
+    @State var abilities = Abilites(isHidden: [], name: [], text: [])
     @State var fetchForm = ""
     var body: some View {
         VStack(spacing:0){
@@ -25,7 +26,11 @@ struct VarietiesView: View {
             .background(Color.gray.opacity(0.1))
             communication
         }
+        .onReceive(vm.abilities){
+            if let abilities = vm.varieties?.abilites{  self.abilities = abilities }
+        }
     }
+    
 }
 
 #Preview {
@@ -90,21 +95,38 @@ extension VarietiesView{
                     set: { vm.varieties?.form.images[0] = $0 }
                 )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
             }
-            Text("특성").bold()
-            ForEach((vm.varieties?.abilites.isHidden ?? []).indices,id: \.self){ index in
+            HStack{
+                Text("특성").bold()
+                Button {
+                    abilities.isHidden.append(false)
+                    abilities.name.append("")
+                    abilities.text.append("")
+                } label: {
+                    Image(systemName: "plus.circle")
+                }
+                Button {
+                    abilities.isHidden.removeLast()
+                    abilities.name.removeLast()
+                    abilities.text.removeLast()
+                } label: {
+                    Image(systemName: "minus.circle")
+                }
+            }
+            
+            ForEach(abilities.isHidden.indices,id: \.self){ index in
                 HStack{
                     TextField("", text: Binding(
-                        get: { String(vm.varieties?.abilites.isHidden[index] ?? false) },
-                        set: {  if let value = Bool($0) { vm.varieties?.abilites.isHidden[index] = value }}
+                        get: { String(abilities.isHidden[index]) },
+                        set: {  if let value = Bool($0) { abilities.isHidden[index] = value }}
                     )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
                     TextField("", text: Binding(
-                        get: { vm.varieties?.abilites.name[index] ?? "" },
-                        set: { vm.varieties?.abilites.name[index] = $0 }
+                        get: { abilities.name[index] },
+                        set: { abilities.name[index] = $0 }
                     )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
                 }
                 TextField("", text: Binding(
-                    get: { vm.varieties?.abilites.text[index] ?? "" },
-                    set: { vm.varieties?.abilites.text[index] = $0 }
+                    get: { abilities.text[index] },
+                    set: { abilities.text[index] = $0 }
                 )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
             }
             Text("스탯").bold()
@@ -142,6 +164,7 @@ extension VarietiesView{
             }.background(Color.pink)
             Button {
                 Task{
+                    vm.varieties?.abilites = abilities
                     guard let varieties = vm.varieties else {return}
                     try await vm.updatePokemonForm(name: fetchForm, varieties: varieties)
                 }

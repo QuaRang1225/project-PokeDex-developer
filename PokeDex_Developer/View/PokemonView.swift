@@ -12,6 +12,8 @@ struct PokemonView: View {
     
     @State var fetchNum = ""
     @EnvironmentObject var vm:UpdateViewModel
+    @State var textEntry = TextEntries(text: [], version: [])
+    @State var egg = [String]()
     var body: some View {
         VStack(spacing:0){
             TextField("도감번호",text: $fetchNum).font(.title3)
@@ -25,6 +27,12 @@ struct PokemonView: View {
             .padding(.horizontal,10)
             .background(Color.gray.opacity(0.1))
             communication
+        }
+        .onReceive(vm.textEntries){
+            if let textEntries = vm.pokemon?.textEntries{  self.textEntry = textEntries }
+        }
+        .onReceive(vm.egg){
+            if let egg = vm.pokemon?.eggGroup{  self.egg = egg }
         }
     }
 }
@@ -166,30 +174,58 @@ extension PokemonView{
                 }
             }
             VStack(alignment: .leading){
-                Text("알그룹").bold()
                 HStack{
-                    ForEach((vm.pokemon?.eggGroup ?? []).indices,id: \.self){ index in
+                    Text("알그룹").bold()
+                    Button {
+                        egg.append("")
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                    Button {
+                        egg.removeLast()
+                    } label: {
+                        Image(systemName: "minus.circle")
+                    }
+                    
+                }
+                HStack{
+                    ForEach(egg.indices,id: \.self){ index in
                         TextField("", text: Binding(
-                            get: { vm.pokemon?.eggGroup[index] ?? "" },
-                            set: { vm.pokemon?.eggGroup[index] = $0 }
+                            get: { egg[index] },
+                            set: { egg[index] = $0 }
                         )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
                     }
                 }
             }
             VStack(alignment: .leading){
-                Text("도감 설명").bold()
-                ForEach((vm.pokemon?.textEntries.version ?? []).indices,id: \.self){ index in
-                    HStack{
-                        TextField("", text: Binding(
-                            get: { vm.pokemon?.textEntries.version[index] ?? "" },
-                            set: { vm.pokemon?.textEntries.version[index] = $0 }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
-                        TextField("", text: Binding(
-                            get: { vm.pokemon?.textEntries.text[index] ?? "" },
-                            set: { vm.pokemon?.textEntries.text[index] = $0 }
-                        )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
+                HStack{
+                    Text("도감 설명").bold()
+                    Button {
+                        textEntry.text.append("")
+                        textEntry.version.append("")
+                    } label: {
+                        Image(systemName: "plus.circle")
                     }
+                    Button {
+                        textEntry.text.removeLast()
+                        textEntry.version.removeLast()
+                    } label: {
+                        Image(systemName: "minus.circle")
+                    }
+                    
                 }
+                ForEach(textEntry.text.indices ,id: \.self){ index in
+                        HStack{
+                            TextField("", text: Binding(
+                                get: { textEntry.version[index] },
+                                set: { textEntry.version[index] = $0 }
+                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
+                            TextField("", text: Binding(
+                                get: { textEntry.text[index]},
+                                set: { textEntry.text[index] = $0 }
+                            )).overlay(Rectangle().frame(height: 1).padding(.top, 35).foregroundColor(.gray))
+                        }
+                    }
             }
             VStack(alignment: .leading){
                 Text("리전폼").bold()
@@ -220,6 +256,8 @@ extension PokemonView{
             }.background(Color.pink)
             Button {
                 Task{
+                    vm.pokemon?.textEntries = textEntry
+                    vm.pokemon?.eggGroup = egg
                     guard let num = Int(fetchNum),let pokemon = vm.pokemon else {return}
                     try await vm.updatePokemon(num:num, pokemon: pokemon)
                 }
